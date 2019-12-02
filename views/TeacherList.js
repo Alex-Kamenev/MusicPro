@@ -132,7 +132,7 @@ handleCheckPress = () => {
                 </View>
                 <ScrollView>
                 {this.state.teacherList.map((teacher) => (
-                    <View style={styles.listContainer}>
+                    <View key={teacher.name} style={styles.listContainer}>
                         <View style={styles.imageContainer}>
                             <Image
                             style={styles.image}

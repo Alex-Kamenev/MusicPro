@@ -139,7 +139,7 @@ handleProfilePress = () => {
                 </View>
                 <ScrollView>
                 {this.state.studentList.map((student) => (
-                    <View style={styles.listContainer}>
+                    <View key={student.name} style={styles.listContainer}>
                         <View style={styles.imageContainer}>
                             <Image
                             style={styles.image}
