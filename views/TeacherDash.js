@@ -106,7 +106,7 @@ handleProfilePress = () => {
                 </View>
                 <View style={styles.dateBar}>
                     <Text style={styles.dateText}>
-                        MONDAY, DECEMBER 2ND
+                        MONDAY, DECEMBER 4th
                     </Text>
                 </View>
                 <ScrollView>
