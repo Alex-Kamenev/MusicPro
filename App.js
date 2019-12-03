@@ -14,6 +14,7 @@ import StudentList from './views/StudentList';
 import TeacherList from './views/TeacherList';
 import StudentRequest from './views/StudentRequest';
 import StudentDash from './views/StudentDash';
+import CalendarTeacher from './views/CalendarTeacher';
 
 export default function App() {
   return (
@@ -64,6 +65,11 @@ export default function App() {
         <Scene
           key = 'TeacherCalendar'
           component = { TeacherCalendar }
+          hideNavBar = { true }
+        />
+        <Scene
+          key = 'CalendarTeacher'
+          component = { CalendarTeacher }
           hideNavBar = { true }
       />
       </Scene>

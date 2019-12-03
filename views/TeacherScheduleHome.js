@@ -1,3 +1,5 @@
+//First version of the teacher home screens it would have been good to apply some of the technics used here to the final version
+//if navigation is applied to DashTeacher the same way as it is here same screens could be merged into one  
 import React, { Component } from 'react';
 import { AppRegistry, Text, View, TouchableHighlight, Dimensions, StyleSheet, Image } from 'react-native';
 import { Constants } from 'expo';

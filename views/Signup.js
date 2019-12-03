@@ -18,7 +18,8 @@ class Signup extends React.Component {
     password: '',
     name: '',
     phone: '',
-    teacherCode: ''
+    teacherCode: '',
+    selected: false
   }
 
   studentPressed = () => {
@@ -30,6 +31,11 @@ class Signup extends React.Component {
   teacherPressed = () => {
     this.setState({
       student: false
+    })
+  }
+  selectedChoice = () => {
+    this.setState({
+      selected: true
     })
   }
 
@@ -151,7 +157,10 @@ class Signup extends React.Component {
               onChangeText={(number) => this.setState({number: number})}
             />
           </View>
-          <TouchableOpacity onPress={() => {this.teacherDone()}}>
+          <TouchableOpacity onPress={() => 
+
+          {this.teacherDone()}
+          }>
               <View style={styles.doneButton}>
               < Text style={styles.buttonText}> 
                 Done 
