@@ -13,7 +13,7 @@ import TeacherDash from './views/TeacherDash';
 import StudentList from './views/StudentList';
 import TeacherList from './views/TeacherList';
 import StudentRequest from './views/StudentRequest';
-import StudentDash from './views/SteudentDash';
+import StudentDash from './views/StudentDash';
 
 export default function App() {
   return (
