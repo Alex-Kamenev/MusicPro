@@ -31,6 +31,7 @@ handleTextChange = inputValue => {
 };
 
 handleCalendarPress = () => {
+    Actions.TeacherCalendar();
 }
 
 handleProfilePress = () => {
