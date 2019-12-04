@@ -30,7 +30,7 @@ class StudentList extends React.Component {
     inputValue: "",
     studentList: [
       {
-        name: "Grace Jacobs",
+        name: "Grace Student",
         city: "Manhattan, NY",
         instrument: "Guitar",
         image:
@@ -136,15 +136,6 @@ class StudentList extends React.Component {
                 <Image
                   source={{
                     uri:
-                      "http://fa2png.io/media/icons/foundation-icon-fonts/2015-02-16/pencil/256/0/274156_none.png"
-                  }}
-                  style={styles.icon}
-                />
-              </TouchableHighlight>
-              <TouchableHighlight onPress={this.handleProfilePress}>
-                <Image
-                  source={{
-                    uri:
                       "http://fa2png.io/media/icons/font-awesome/4-7-0/address-card-o/256/0/274156_none.png"
                   }}
                   style={styles.icon}
@@ -211,6 +202,7 @@ const styles = StyleSheet.create({
     width: deviceWidth / 2.5
   },
   rightContainer: {
+    paddingLeft: 40,
     width: deviceWidth / 2.5,
     alignItems: "center",
     flexDirection: "row"

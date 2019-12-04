@@ -19,7 +19,7 @@ import { Calendar, CalendarList, Agenda } from "react-native-calendars";
 let deviceHeight = Dimensions.get("window").height;
 let deviceWidth = Dimensions.get("window").width;
 
-class CalendarTeacher extends React.Component {
+class SudentCalendar extends React.Component {
   //I always like keeping this here, it is for performing actions before the component (the screen) loads
   componentWillMount() {}
 
@@ -31,21 +31,20 @@ class CalendarTeacher extends React.Component {
 
     lessonsList: [
       {
-        name: "Request",
+        name: "Confirmed",
         time: "S Jacobs at 11 - 12 PM"
       },
       {
-        name: "Request",
+        name: "Confirmed",
         time: "D Brown at 13 - 14 PM"
       },
       {
-        name: "Request",
+        name: "Confirmed",
         time: "S Smith at 16 - 17 PM"
       }
     ]
   };
 
-  
   componentDidMount() {
     var date = new Date().getDate(); //Current Date
     var month = new Date().getMonth() + 1; //Current Month
@@ -55,30 +54,33 @@ class CalendarTeacher extends React.Component {
       //Setting the value of the date time
       date: "Today is: " + month + "/" + date + "/" + year
     });
-  };
+  }
 
   handleTextChange = inputValue => {
     this.setState({ inputValue });
   };
 
   handleCalendarPress = () => {
-    Actions.CalendarTeacher();
+    Actions.TeacherCalendar();
   };
-
+  handleStudentHome = () => {
+    Actions.StudentDash();
+  };
+  handleCalendarStudentPress = () => {
+    Actions.SudentCalendar();
+  };
   handleProfilePress = () => {
-    Actions.StudentList();
-  };
-  handleTeacherDash = () => {
-    Actions.TeacherDash();
+    Actions.TeacherList();
   };
 
   render() {
     return (
       // this is just random filler for the template, but this is where what the user sees is rendered
+      // this is just random filler for the template, but this is where what the user sees is rendered
       <View style={styles.container}>
         <View style={styles.topBar}>
           <View style={styles.leftContainer}>
-            <TouchableHighlight onPress={this.handleTeacherDash}>
+            <TouchableHighlight onPress={this.handleStudentHome}>
               <Image
                 source={{
                   uri:
@@ -89,23 +91,14 @@ class CalendarTeacher extends React.Component {
             </TouchableHighlight>
           </View>
           <View style={styles.middleContainer}>
-            <Text style={styles.profileText}>Teacher User</Text>
+            <Text style={styles.profileText}>Student User</Text>
           </View>
           <View style={styles.rightContainer}>
-            <TouchableHighlight onPress={this.handleCalendarPress}>
+            <TouchableHighlight onPress={this.handleCalendarStudentPress}>
               <Image
                 source={{
                   uri:
                     "http://fa2png.io/media/icons/font-awesome/4-7-0/calendar-times-o/256/0/274156_none.png"
-                }}
-                style={styles.icon}
-              />
-            </TouchableHighlight>
-            <TouchableHighlight onPress={this.handleProfilePress}>
-              <Image
-                source={{
-                  uri:
-                    "http://fa2png.io/media/icons/foundation-icon-fonts/2015-02-16/pencil/256/0/274156_none.png"
                 }}
                 style={styles.icon}
               />
@@ -129,8 +122,7 @@ class CalendarTeacher extends React.Component {
           style={{
             borderWidth: 1,
             borderColor: "gray",
-            height: deviceHeight*0.5
-
+            height: deviceHeight * 0.5
           }}
           // Specify theme properties to override specific styles for calendar parts. Default = {}
           theme={{
@@ -165,9 +157,12 @@ class CalendarTeacher extends React.Component {
           maxDate={"2020-12-31"}
           // Handler which gets executed on day press. Default = undefined
           onDayPress={() => {
+            Actions.TeacherDash();
           }}
           // Handler which gets executed on day long press. Default = undefined
-          onDayLongPress={(day) => {console.log('selected day', day)}}
+          onDayLongPress={day => {
+            console.log("selected day", day);
+          }}
           // Month format in calendar title. Formatting values: http://arshaw.com/xdate/#Formatting
           monthFormat={"yyyy MMM"}
           // Handler which gets executed when visible month changes in calendar. Default = undefined
@@ -198,7 +193,7 @@ class CalendarTeacher extends React.Component {
             <View key={student.time} style={styles.listContainer}>
               <TouchableHighlight
                 onPress={() => {
-                //needs a proper box with a more sophisticated message and a accept reject buttons
+                  //needs a proper box with a more sophisticated message and a accept reject buttons
                   alert("Yes/No to request?");
                 }}
               >
@@ -239,7 +234,8 @@ const styles = StyleSheet.create({
   rightContainer: {
     width: deviceWidth / 2.5,
     alignItems: "center",
-    flexDirection: "row"
+    flexDirection: "row",
+    paddingLeft: 40
   },
   dateBar: {
     height: deviceHeight / 20,
@@ -304,4 +300,4 @@ const styles = StyleSheet.create({
 });
 
 //this lets the component get imported other places
-export default CalendarTeacher;
+export default SudentCalendar;
