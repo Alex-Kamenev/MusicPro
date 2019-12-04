@@ -62,7 +62,7 @@ class RegisteredLogin extends React.Component {
         password: password,
       })
     }).then((response) => response.json())
-    .then((responseJson) => {
+      .then((responseJson) => {
       if(responseJson == 'Welcome'){
         alert('Welcome');
         {this.state.student
