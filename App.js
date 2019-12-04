@@ -16,6 +16,7 @@ import StudentRequest from './views/StudentRequest';
 import StudentDash from './views/StudentDash';
 import CalendarTeacher from './views/CalendarTeacher';
 import SudentCalendar from './views/SudentCalendar';
+import ConfirmationPage from './views/ConfirmationPage';
 
 export default function App() {
   return (
@@ -76,6 +77,11 @@ export default function App() {
         <Scene
             key = 'SudentCalendar'
             component = { SudentCalendar }
+            hideNavBar = { true }
+        />
+        <Scene
+            key = 'ConfirmationPage'
+            component = { ConfirmationPage }
             hideNavBar = { true }
         />
       </Scene>

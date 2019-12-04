@@ -39,7 +39,7 @@ handleTimeChange = time => {
 };
 
 handleSubmitPress = () => {
-    Actions.StudentDash();
+    Actions.ConfirmationPage();
 }
 
 handleBackArrowPress = () => {
