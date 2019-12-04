@@ -19,7 +19,7 @@ var connection = mysql.createConnection({
     port: '3306',
 });
 
-var server = app.listen (3000, function(){
+var server = app.listen (8130, function(){
     var host = server.address().address
     var port = server.address().port
     console.log('start');
@@ -32,7 +32,7 @@ connection.connect(function(error){
 
 //Creating a GET route that returns data from the 'users' table
 app.get('/user', function(req, res){
-    connection.query('SELECT * FROM user', function(error, rows, fields){
+    connection.query('SELECT * FROM account', function(error, rows, fields){
         if(error) console.log(error);
         else{
             console.log(rows);

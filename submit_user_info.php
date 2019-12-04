@@ -23,9 +23,9 @@
     //populate phone number from JSON $obj array and store into $phone
     $phone = $obj['phone'];
 
-    //create SQL query and insert the record into MySQL database table
+    //create SQL query and insert the record into MySQL database tables
     $Sql_Query = "INSERT INTO account (name, email, password, phone) VALUES ('$name', '$email', '$password', '$phone')";
-
+    
     if(mysqli_query($con, $Sql_Query)){
         //insert successfully, throw message
         $MSG = 'You signed up!!!';

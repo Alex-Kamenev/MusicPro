@@ -53,7 +53,7 @@ class Signup extends React.Component {
     const {password} = this.state;
     const {phone} = this.state;
 
-    fetch('http://192.168.0.8/submit_user_info.php', {
+    fetch('http://10.10.155.46/submit_user_info.php', {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
@@ -69,6 +69,17 @@ class Signup extends React.Component {
       .then((responseJson) => {
         //show message from server if inserted successfully
         Alert.alert(responseJson);
+        if(responseJson == 'You signed up!'){
+          //redirect to profile page
+          {this.state.student
+          ?
+          Actions.StudentDash()
+          :
+          Actions.TeacherDash();
+          }
+        }else{
+          alert('Please try again');
+        }
       }).catch((error) => {
         console.error(error);
       });

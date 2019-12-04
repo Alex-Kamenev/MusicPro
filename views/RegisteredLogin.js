@@ -22,6 +22,7 @@ class RegisteredLogin extends React.Component {
     username: "",
     password: "",
     student: true,
+    data: [],
   };
 
   backPressed = () => {
@@ -33,7 +34,7 @@ class RegisteredLogin extends React.Component {
   };
 
   enterStudentDash = () => {
-    Actions.StudentDash();
+      Actions.StudentDash();
   };
 
   studentPressed = () => {
@@ -47,7 +48,16 @@ class RegisteredLogin extends React.Component {
       student: false
     })
   }
-  
+
+  fetchData = async()=>{
+    const response = await fetch('http://192.168.0.8:8130/account');
+    const users = await response.json();
+    this.setState({data: users});
+  }
+
+  componentDidMount(){
+      this.fetchData();
+  }
 
   render() {
     return (
