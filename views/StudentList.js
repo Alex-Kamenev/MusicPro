@@ -120,7 +120,7 @@ class StudentList extends React.Component {
               </TouchableHighlight>
             </View>
             <View style={styles.middleContainer}>
-              <Text style={styles.nameText}>Sarah Gibney</Text>
+              <Text style={styles.nameText}>Student User</Text>
             </View>
             <View style={styles.rightContainer}>
               <TouchableHighlight onPress={this.handleCalendarPress}>
@@ -188,7 +188,7 @@ const styles = StyleSheet.create({
   topBar: {
     flexDirection: "row",
     alignItems: "center",
-    height: deviceHeight / 5,
+    height: deviceHeight / 6,
     width: deviceWidth,
     backgroundColor: "white",
     borderBottomWidth: 2,

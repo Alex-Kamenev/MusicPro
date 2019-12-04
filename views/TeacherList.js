@@ -35,7 +35,7 @@ handleTextChange = inputValue => {
 };
 
 handleCalendarPress = () => {
-    Actions.StudentDash();
+    Actions.SudentCalendar();
 }
 
 handleProfilePress = () => {

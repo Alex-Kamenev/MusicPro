@@ -101,15 +101,7 @@ class CalendarTeacher extends React.Component {
                 style={styles.icon}
               />
             </TouchableHighlight>
-            <TouchableHighlight onPress={this.handleProfilePress}>
-              <Image
-                source={{
-                  uri:
-                    "http://fa2png.io/media/icons/foundation-icon-fonts/2015-02-16/pencil/256/0/274156_none.png"
-                }}
-                style={styles.icon}
-              />
-            </TouchableHighlight>
+            
             <TouchableHighlight onPress={this.handleProfilePress}>
               <Image
                 source={{
@@ -237,6 +229,7 @@ const styles = StyleSheet.create({
     width: deviceWidth / 2.5
   },
   rightContainer: {
+    paddingLeft:40,
     width: deviceWidth / 2.5,
     alignItems: "center",
     flexDirection: "row"

@@ -168,13 +168,13 @@ const styles = StyleSheet.create({
     width: deviceWidth / 2.5
   },
   rightContainer: {
-    paddingLeft: 40,
     width: deviceWidth / 2.5,
     alignItems: "center",
-    flexDirection: "row"
+    flexDirection: "row",
+    paddingLeft: 40
   },
   dateBar: {
-    height: deviceHeight / 10,
+    height: deviceHeight / 20,
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
