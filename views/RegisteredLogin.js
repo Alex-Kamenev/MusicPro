@@ -49,14 +49,34 @@ class RegisteredLogin extends React.Component {
     })
   }
 
-  fetchData = async()=>{
-    const response = await fetch('http://192.168.0.8:8130/account');
-    const users = await response.json();
-    this.setState({data: users});
-  }
-
-  componentDidMount(){
-      this.fetchData();
+  confirm =()=> {
+    const {username, password} = this.state;
+    fetch('http://10.163.22.205/verify.php', {
+      method: 'POST',
+      header: {
+        'Accept': 'application/json',
+        'Content-type': 'application/json'
+      },
+      body: JSON.stringify({
+        username: username,
+        password: password,
+      })
+    }).then((response) => response.json())
+    .then((responseJson) => {
+      if(responseJson == 'Welcome'){
+        alert('Welcome');
+        {this.state.student
+        ?
+        Actions.StudentDash()
+        :
+        Actions.TeacherDash()
+        }
+      }else{
+        alert('Wrong Input')
+      }
+    }).catch((error)=>{
+      console.error(error);
+    });
   }
 
   render() {

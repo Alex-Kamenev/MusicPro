@@ -53,7 +53,7 @@ class Signup extends React.Component {
     const {password} = this.state;
     const {phone} = this.state;
 
-    fetch('http://10.10.155.46/submit_user_info.php', {
+    fetch('http://10.163.22.205/submit_user_info.php', {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
