@@ -19,7 +19,7 @@ class TeacherList extends React.Component {
         inputValue: '',
         teacherList: [
         {
-            name: 'Grace Jacobs',
+            name: 'Grace Teacher',
             city: 'Manhattan, NY',
             instrument: 'Guitar',
             image: 'https://scontent-lga3-1.xx.fbcdn.net/v/t1.0-9/40482582_1687539791374401_1861957606596149248_n.jpg?_nc_cat=108&_nc_ohc=UYI3jh4nLKYAQneCwzUp7HEKi154WXmQobi1Ttxfl7cSo007KSqq-SrJA&_nc_ht=scontent-lga3-1.xx&oh=4de1bae06bfa24786863fa66e1447ebf&oe=5E815AC5',
@@ -86,10 +86,12 @@ handleTextChange = inputValue => {
 };
 
 handleCalendarPress = () => {
-    Actions.StudentDash();
+    Actions.SudentCalendar();
 }
 
-handleProfilePress = () => {
+handleStudentHome = () => {
+    Actions.StudentDash();
+    
 }
 
 handleCheckPress = () => {
@@ -103,14 +105,18 @@ handleCheckPress = () => {
       <View style={styles.container}>
                 <View style={styles.topBar}>
                     <View style={styles.leftContainer}>
+                    <TouchableHighlight
+                        onPress={this.handleStudentHome}
+                    >
                     <Image 
                         source={{ uri: 'https://www.pace.edu/sites/default/files/styles/news_item_675x450/public/marijoRussel_OGrady_DAILY_0.jpg?itok=viugcOqU' }}
                         style={styles.imageMain}
                     />
+                    </TouchableHighlight>
                     </View>
                     <View style={styles.middleContainer}>
                         <Text style={styles.nameText}>
-                            Sarah Gibney
+                            Student User
                         </Text>
                     </View>
                     <View style={styles.rightContainer}>

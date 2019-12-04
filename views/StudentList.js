@@ -30,7 +30,7 @@ class StudentList extends React.Component {
     inputValue: "",
     studentList: [
       {
-        name: "Grace Jacobs",
+        name: "Grace Student",
         city: "Manhattan, NY",
         instrument: "Guitar",
         image:

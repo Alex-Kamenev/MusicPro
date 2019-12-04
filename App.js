@@ -15,6 +15,7 @@ import TeacherList from './views/TeacherList';
 import StudentRequest from './views/StudentRequest';
 import StudentDash from './views/StudentDash';
 import CalendarTeacher from './views/CalendarTeacher';
+import SudentCalendar from './views/SudentCalendar';
 
 export default function App() {
   return (
@@ -60,18 +61,23 @@ export default function App() {
         <Scene
           key = "StudentRequest"
           component = { StudentRequest }
-          hideNavBar = { true }
+          hideNavBar = { false }
         />
         <Scene
           key = 'TeacherCalendar'
           component = { TeacherCalendar }
-          hideNavBar = { true }
+          hideNavBar = { false }
         />
         <Scene
           key = 'CalendarTeacher'
           component = { CalendarTeacher }
           hideNavBar = { true }
-      />
+        />
+        <Scene
+            key = 'SudentCalendar'
+            component = { SudentCalendar }
+            hideNavBar = { true }
+        />
       </Scene>
     </Router>
   );

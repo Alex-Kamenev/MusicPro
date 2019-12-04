@@ -23,6 +23,7 @@ class TeacherDash extends React.Component {
   componentWillMount() {}
 
   state = {
+    date: "",
     inputValue: "",
     teacherDashDisplay: "block",
     teacherProfileScrollDisplay: "none",
@@ -57,6 +58,18 @@ class TeacherDash extends React.Component {
         time: "8 - 9 PM"
       }
     ]
+  };
+  
+  componentDidMount() {
+    var date = new Date().getDate(); //Current Date
+    var month = new Date().getMonth() + 1; //Current Month
+    var year = new Date().getFullYear(); //Current Year
+
+    this.setState({
+      //Setting the value of the date time
+      date:
+        "Today is: " + month + "/" + date + "/" + year
+    });
   };
 
   handleTextChange = inputValue => {
@@ -125,7 +138,7 @@ class TeacherDash extends React.Component {
           </View>
         </View>
         <View style={styles.dateBar}>
-          <Text style={styles.dateText}>MONDAY, DECEMBER 4ND</Text>
+          <Text style={styles.dateText}>{this.state.date}</Text>
         </View>
         <ScrollView>
           {this.state.lessonsList.map(student => (
@@ -150,7 +163,7 @@ const styles = StyleSheet.create({
   topBar: {
     flexDirection: "row",
     alignItems: "center",
-    height: deviceHeight / 5,
+    height: deviceHeight / 6,
     width: deviceWidth,
     backgroundColor: "white",
     borderBottomWidth: 2,

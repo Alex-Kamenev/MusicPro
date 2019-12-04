@@ -18,6 +18,7 @@ class StudentRequest extends React.Component {
      name: '',
       phoneNumber: '',
       email: '',
+      time: '',
 
       calendarDisplay: 'none',
       studentDashDisplay: 'none',
@@ -33,6 +34,9 @@ handlePhoneNumberChange = phoneNumber => {
 handleEmailChange = email => {
     this.setState({ email });
 };
+handleTimeChange = time => {
+    this.setState({ time });
+};
 
 handleSubmitPress = () => {
     Actions.StudentDash();
@@ -47,14 +51,6 @@ handleBackArrowPress = () => {
       <View style={styles.container}>
         <View style={{ display: this.state.studentRequestDisplay}}>
             <View style={styles.topBar}>
-                    <TouchableHighlight
-                        onPress={this.handleBackArrowPress}
-                    >
-                        <Image 
-                            source={{ uri: 'http://fa2png.io/media/icons/feather/1-1-0/arrow-left/256/0/fefeff_none.png' }}
-                            style={styles.backArrow}
-                        />
-                    </TouchableHighlight>
                     <Text style={styles.title}>
                         Schedule a Lesson
                     </Text>
@@ -82,6 +78,16 @@ handleBackArrowPress = () => {
             <View style={styles.inputContainer}>
                 <Text style={styles.promptText}>
                     Email
+                </Text>
+                <TextInput
+                    value={this.state.email}
+                    onChangeText={this.handleEmailChange}
+                    style={styles.inputText}
+                />
+            </View>
+            <View style={styles.inputContainer}>
+                <Text style={styles.promptText}>
+                    from to (12 - 1 PM)
                 </Text>
                 <TextInput
                     value={this.state.email}
@@ -128,6 +134,7 @@ const styles = StyleSheet.create({
 },
   title: {
       fontSize: 24,
+      marginLeft: 10,
       fontFamily: 'HelveticaNeue-Medium',
       color: 'white',
   },
