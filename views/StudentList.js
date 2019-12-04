@@ -197,7 +197,7 @@ const styles = StyleSheet.create({
   topBar: {
     flexDirection: "row",
     alignItems: "center",
-    height: deviceHeight / 5,
+    height: deviceHeight / 6,
     width: deviceWidth,
     backgroundColor: "white",
     borderBottomWidth: 2,

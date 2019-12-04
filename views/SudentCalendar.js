@@ -157,7 +157,6 @@ class SudentCalendar extends React.Component {
           maxDate={"2020-12-31"}
           // Handler which gets executed on day press. Default = undefined
           onDayPress={() => {
-            Actions.TeacherDash();
           }}
           // Handler which gets executed on day long press. Default = undefined
           onDayLongPress={day => {
