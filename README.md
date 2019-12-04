@@ -1,2 +1,5 @@
 # MusicPro
-FIrst commit 
+To run 
+npm install
+npm install --save react-native-calendars
+expo start
