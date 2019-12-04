@@ -96,6 +96,7 @@ class Signup extends React.Component {
             <TextInput
               style={styles.textInputStyle}
               value={this.state.password}
+              secureTextEntry={true}
               placeholder='password'
               onChangeText={(password) => this.setState({password: password})}
             />
