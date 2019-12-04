@@ -72,7 +72,7 @@ class TeacherList extends React.Component {
     }
 
     fetchData = async()=>{
-        const response = await fetch('http://192.168.0.8:9090/user');
+        const response = await fetch('http://192.168.0.8:8120/user');
         const users = await response.json();
         this.setState({data: users});
     }

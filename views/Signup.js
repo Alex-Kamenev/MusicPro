@@ -286,3 +286,5 @@ const styles = StyleSheet.create({
 });
 //this lets the component get imported other places
 export default Signup;
+
+//https://reactnativecode.com/react-native-insert-text-input-data-to-mysql-server/
