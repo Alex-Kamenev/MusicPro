@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { AppRegistry, Text, View, StyleSheet, Image, Dimensions, ScrollView, TextInput, TouchableHighlight } from 'react-native';
+import { FlatList, AppRegistry, Text, View, StyleSheet, Image, Dimensions, ScrollView, TextInput, TouchableHighlight } from 'react-native';
 import { Constants } from 'expo';
 import { Actions } from 'react-native-router-flux';
 
@@ -15,11 +15,11 @@ class TeacherList extends React.Component {
   }
 
   //
-  state = {
-    inputValue: '',
-    teacherList: [
+    state = {
+        inputValue: '',
+        teacherList: [
         {
-            name: 'Grace Jacobs',
+            name: 'Grace Teacher',
             city: 'Manhattan, NY',
             instrument: 'Guitar',
             image: 'https://scontent-lga3-1.xx.fbcdn.net/v/t1.0-9/40482582_1687539791374401_1861957606596149248_n.jpg?_nc_cat=108&_nc_ohc=UYI3jh4nLKYAQneCwzUp7HEKi154WXmQobi1Ttxfl7cSo007KSqq-SrJA&_nc_ht=scontent-lga3-1.xx&oh=4de1bae06bfa24786863fa66e1447ebf&oe=5E815AC5',
@@ -66,37 +66,57 @@ class TeacherList extends React.Component {
             instrument: 'Flute',
             image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRYW_ycIBW5Y4UrGN_We1RKTF966PjTYfdljzk_HJochHbcq9lx',
         },
-    ]
-}
+        ],
+
+        data: [],
+    }
+
+    fetchData = async()=>{
+        const response = await fetch('http://192.168.0.8:8120/user');
+        const users = await response.json();
+        this.setState({data: users});
+    }
+
+    componentDidMount(){
+        this.fetchData();
+    }
 
 handleTextChange = inputValue => {
     this.setState({ inputValue });
 };
 
 handleCalendarPress = () => {
-    Actions.StudentDash();
+    Actions.SudentCalendar();
 }
 
-handleProfilePress = () => {
+handleStudentHome = () => {
+    Actions.StudentDash();
+    
 }
 
 handleCheckPress = () => {
     Actions.TeacherCalendar();
-  }
+}
+
+
 
   render() {
     return (
       <View style={styles.container}>
                 <View style={styles.topBar}>
                     <View style={styles.leftContainer}>
+                    <TouchableHighlight
+                        onPress={this.handleStudentHome}
+                    >
                     <Image 
                         source={{ uri: 'https://www.pace.edu/sites/default/files/styles/news_item_675x450/public/marijoRussel_OGrady_DAILY_0.jpg?itok=viugcOqU' }}
                         style={styles.imageMain}
                     />
+                    </TouchableHighlight>
                     </View>
                     <View style={styles.middleContainer}>
                         <Text style={styles.nameText}>
-                            Sarah Gibney
+                            Student User
                         </Text>
                     </View>
                     <View style={styles.rightContainer}>
@@ -163,6 +183,44 @@ handleCheckPress = () => {
                         </View>
                     </View>
                 ))}
+
+                <FlatList
+                    data={this.state.data}
+                    keyExtractor={(item, index) => index.toString()}
+                    
+                    renderItem={({item}) => 
+                        <View style={styles.listContainer}>   
+                            <View style={styles.imageContainer}>
+                                <Image
+                                    style={styles.image}
+                                    source={{uri: item.image}}
+                                >
+                                </Image>
+                            </View>                             
+                            <View style={styles.nameContainer}>
+                                <Text style={styles.nameText}>
+                                    {item.name}
+                                </Text>
+                                <Text style={styles.infoText}>
+                                    {item.location}
+                                </Text>
+                                <Text style={styles.infoText}>
+                                    {item.instrument}
+                                </Text>
+                            </View>
+                            <View style={styles.checkContainer}>
+                                <TouchableHighlight
+                                   onPress={this.handleCheckPress}
+                                >
+                                    <Image 
+                                        source={{ uri: 'http://fa2png.io/media/icons/font-awesome/4-7-0/check-square/256/0/274156_none.png' }}
+                                        style={styles.icon}
+                                    />
+                                </TouchableHighlight>
+                            </View>
+                        </View>
+                    }
+                />
                 </ScrollView>
             </View>
     );

@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StyleSheet, Text, TouchableOpacity, TextInput, Dimensions, ImageBackground } from 'react-native';
+import { AppRegistry, View, StyleSheet, Text, TouchableOpacity, TextInput, Dimensions, ImageBackground, Alert} from 'react-native';
 import { Actions } from 'react-native-router-flux';
 
 let deviceHeight = Dimensions.get('window').height;
@@ -13,12 +13,13 @@ class Signup extends React.Component {
   }
 
   state = {
-    student: true,
-    email : '',
-    password: '',
     name: '',
+    email: '',
     phone: '',
-    teacherCode: ''
+    password: '',
+    student: true,
+    teacherCode: '',
+    selected: false
   }
 
   studentPressed = () => {
@@ -32,6 +33,11 @@ class Signup extends React.Component {
       student: false
     })
   }
+  selectedChoice = () => {
+    this.setState({
+      selected: true
+    })
+  }
 
   studentDone = () => {
     Actions.StudentDash();
@@ -39,6 +45,33 @@ class Signup extends React.Component {
 
   teacherDone = () => {
     Actions.TeacherDash();
+  }
+
+  toServer = () => {
+    const {email} = this.state;
+    const {name} = this.state;
+    const {password} = this.state;
+    const {phone} = this.state;
+
+    fetch('http://192.168.0.8/submit_user_info.php', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        name: name,
+        email: email,
+        password: password,
+        phone: phone,
+      })
+    }).then((response) => response.json())
+      .then((responseJson) => {
+        //show message from server if inserted successfully
+        Alert.alert(responseJson);
+      }).catch((error) => {
+        console.error(error);
+      });
   }
 
   render() {
@@ -90,6 +123,7 @@ class Signup extends React.Component {
               value={this.state.email}
               placeholder='email'
               onChangeText={(email) => this.setState({email: email})}
+              keyboardType='email-address'
             />
           </View>
           <View style={styles.userInfoInput}>
@@ -98,22 +132,25 @@ class Signup extends React.Component {
               value={this.state.password}
               placeholder='password'
               onChangeText={(password) => this.setState({password: password})}
+              secureTextEntry={true}
             />
           </View>
           <View style={styles.userInfoInput}>
             <TextInput
               style={styles.textInputStyle}
-              value={this.state.number}
-              placeholder='(XXX)-XXX-XXXX'
-              onChangeText={(number) => this.setState({number: number})}
+              value={this.state.phone}
+              placeholder='number'
+              onChangeText={phone => this.setState({phone})}
             />
           </View>
-          <TouchableOpacity onPress={() => {this.studentDone()}}>
-          <View style={styles.doneButton}>
-              < Text style={styles.buttonText}> 
-                Done 
-              </Text>
-              </View>
+          <TouchableOpacity 
+            onPress={this.toServer}
+          >
+            <View style={styles.doneButton}>
+                <Text style={styles.buttonText}> 
+                  Done 
+                </Text>
+            </View>
           </TouchableOpacity>
         </View> 
         : 
@@ -133,6 +170,7 @@ class Signup extends React.Component {
               value={this.state.email}
               placeholder='email'
               onChangeText={(email) => this.setState({email: email})}
+              keyboardType='email-address'
             />
           </View>
           <View style={styles.userInfoInput}>
@@ -141,19 +179,22 @@ class Signup extends React.Component {
               value={this.state.password}
               placeholder='password'
               onChangeText={(password) => this.setState({password: password})}
+              secureTextEntry={true}
             />
           </View>
           <View style={styles.userInfoInput}>
             <TextInput
               style={styles.textInputStyle}
-              value={this.state.number}
-              placeholder='(XXX)-XXX-XXXX'
-              onChangeText={(number) => this.setState({number: number})}
+              value={this.state.phone}
+              placeholder='number'
+              onChangeText={phone => this.setState({phone})}
             />
           </View>
-          <TouchableOpacity onPress={() => {this.teacherDone()}}>
+          <TouchableOpacity 
+            onPress={this.toServer}
+          >
               <View style={styles.doneButton}>
-              < Text style={styles.buttonText}> 
+              <Text style={styles.buttonText}> 
                 Done 
               </Text>
               </View>
@@ -245,3 +286,5 @@ const styles = StyleSheet.create({
 });
 //this lets the component get imported other places
 export default Signup;
+
+//https://reactnativecode.com/react-native-insert-text-input-data-to-mysql-server/

@@ -1,5 +1,5 @@
-//Teacher Dash screen is the main screen on the teacher side of the app
-//has to 3 link buttons but two of them link to the same screen for now
+//Calendar screen linked to TeacherDash
+//This the calendar of the teacher
 import React, { Component } from "react";
 import {
   AppRegistry,
@@ -14,11 +14,12 @@ import {
 } from "react-native";
 import { Constants } from "expo";
 import { Actions } from "react-native-router-flux";
+import { Calendar, CalendarList, Agenda } from "react-native-calendars";
 
 let deviceHeight = Dimensions.get("window").height;
 let deviceWidth = Dimensions.get("window").width;
 
-class TeacherDash extends React.Component {
+class CalendarTeacher extends React.Component {
   //I always like keeping this here, it is for performing actions before the component (the screen) loads
   componentWillMount() {}
 
@@ -30,35 +31,20 @@ class TeacherDash extends React.Component {
 
     lessonsList: [
       {
-        name: "S Jacobs",
-        time: "11 - 12 PM"
+        name: "Request",
+        time: "S Jacobs at 11 - 12 PM"
       },
       {
-        name: "V Cookson",
-        time: "12 - 1  PM"
+        name: "Request",
+        time: "D Brown at 13 - 14 PM"
       },
       {
-        name: "B Jacobs",
-        time: "2- 3 PM"
-      },
-      {
-        name: "Grace W",
-        time: "3:30 - 4:30 PM"
-      },
-      {
-        name: "Sa Jacobs",
-        time: "5 - 6 PM"
-      },
-      {
-        name: "Grace S",
-        time: "7 - 7:30 PM"
-      },
-      {
-        name: "D Jacobs",
-        time: "8 - 9 PM"
+        name: "Request",
+        time: "S Smith at 16 - 17 PM"
       }
     ]
   };
+
   
   componentDidMount() {
     var date = new Date().getDate(); //Current Date
@@ -67,8 +53,7 @@ class TeacherDash extends React.Component {
 
     this.setState({
       //Setting the value of the date time
-      date:
-        "Today is: " + month + "/" + date + "/" + year
+      date: "Today is: " + month + "/" + date + "/" + year
     });
   };
 
@@ -83,7 +68,6 @@ class TeacherDash extends React.Component {
   handleProfilePress = () => {
     Actions.StudentList();
   };
-
   handleTeacherDash = () => {
     Actions.TeacherDash();
   };
@@ -121,6 +105,15 @@ class TeacherDash extends React.Component {
               <Image
                 source={{
                   uri:
+                    "http://fa2png.io/media/icons/foundation-icon-fonts/2015-02-16/pencil/256/0/274156_none.png"
+                }}
+                style={styles.icon}
+              />
+            </TouchableHighlight>
+            <TouchableHighlight onPress={this.handleProfilePress}>
+              <Image
+                source={{
+                  uri:
                     "http://fa2png.io/media/icons/font-awesome/4-7-0/address-card-o/256/0/274156_none.png"
                 }}
                 style={styles.icon}
@@ -131,13 +124,89 @@ class TeacherDash extends React.Component {
         <View style={styles.dateBar}>
           <Text style={styles.dateText}>{this.state.date}</Text>
         </View>
+        <Calendar
+          // Specify style for calendar container element. Default = {}
+          style={{
+            borderWidth: 1,
+            borderColor: "gray",
+            height: deviceHeight*0.5
+
+          }}
+          // Specify theme properties to override specific styles for calendar parts. Default = {}
+          theme={{
+            backgroundColor: "#ffffff",
+            calendarBackground: "#ffffff",
+            textSectionTitleColor: "#b6c1cd",
+            selectedDayBackgroundColor: "#274156",
+            selectedDayTextColor: "#ffffff",
+            todayTextColor: "#00adf5",
+            dayTextColor: "#2d4150",
+            textDisabledColor: "#d9e1e8",
+            dotColor: "#00adf5",
+            selectedDotColor: "#ffffff",
+            arrowColor: "#274156",
+            monthTextColor: "#274156",
+            indicatorColor: "#274156",
+            textDayFontFamily: "HelveticaNeue-Medium",
+            textMonthFontFamily: "HelveticaNeue-Medium",
+            textDayHeaderFontFamily: "HelveticaNeue-Medium",
+            textDayFontWeight: "300",
+            textMonthFontWeight: "bold",
+            textDayHeaderFontWeight: "300",
+            textDayFontSize: 18,
+            textMonthFontSize: 18,
+            textDayHeaderFontSize: 18
+          }}
+          // Initially visible month. Default = Date()
+          current={"2018-12-03"}
+          // Minimum date that can be selected, dates before minDate will be grayed out. Default = undefined
+          minDate={"2018-01-01"}
+          // Maximum date that can be selected, dates after maxDate will be grayed out. Default = undefined
+          maxDate={"2020-12-31"}
+          // Handler which gets executed on day press. Default = undefined
+          onDayPress={() => {
+          }}
+          // Handler which gets executed on day long press. Default = undefined
+          onDayLongPress={(day) => {console.log('selected day', day)}}
+          // Month format in calendar title. Formatting values: http://arshaw.com/xdate/#Formatting
+          monthFormat={"yyyy MMM"}
+          // Handler which gets executed when visible month changes in calendar. Default = undefined
+          onMonthChange={month => {
+            console.log("month changed", month);
+          }}
+          // Hide month navigation arrows. Default = false
+          hideArrows={false}
+          // Replace default arrows with custom ones (direction can be 'left' or 'right')
+          // Do not show days of other months in month page. Default = false
+          hideExtraDays={false}
+          // If hideArrows=false and hideExtraDays=false do not switch month when tapping on greyed out
+          // day from another month that is visible in calendar page. Default = false
+          disableMonthChange={false}
+          // If firstDay=1 week starts from Monday. Note that dayNames and dayNamesShort should still start from Sunday.
+          firstDay={1}
+          // Hide day names. Default = false
+          hideDayNames={false}
+          // Show week numbers to the left. Default = false
+          showWeekNumbers={false}
+          // Handler which gets executed when press arrow icon left. It receive a callback can go back month
+          onPressArrowLeft={substractMonth => substractMonth()}
+          // Handler which gets executed when press arrow icon left. It receive a callback can go next month
+          onPressArrowRight={addMonth => addMonth()}
+        />
         <ScrollView>
           {this.state.lessonsList.map(student => (
-            <View key={student.name} style={styles.listContainer}>
-              <View style={styles.nameContainer}>
-                <Text style={styles.nameText}>{student.name}</Text>
-                <Text style={styles.infoText}>{student.time}</Text>
-              </View>
+            <View key={student.time} style={styles.listContainer}>
+              <TouchableHighlight
+                onPress={() => {
+                //needs a proper box with a more sophisticated message and a accept reject buttons
+                  alert("Yes/No to request?");
+                }}
+              >
+                <View style={styles.nameContainer}>
+                  <Text style={styles.nameText}>{student.name}</Text>
+                  <Text style={styles.infoText}>{student.time}</Text>
+                </View>
+              </TouchableHighlight>
             </View>
           ))}
         </ScrollView>
@@ -168,13 +237,12 @@ const styles = StyleSheet.create({
     width: deviceWidth / 2.5
   },
   rightContainer: {
-    paddingLeft: 40,
     width: deviceWidth / 2.5,
     alignItems: "center",
     flexDirection: "row"
   },
   dateBar: {
-    height: deviceHeight / 10,
+    height: deviceHeight / 20,
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
@@ -236,4 +304,4 @@ const styles = StyleSheet.create({
 });
 
 //this lets the component get imported other places
-export default TeacherDash;
+export default CalendarTeacher;
