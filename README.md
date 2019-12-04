@@ -6,7 +6,7 @@
 * ##### Easy-to-use interactive calendar with a list of students
 * ##### Ability to request and confirm appointments  
 ## Desgin
-![sign-in](https://github.com/Alex-Kamenev/MusicPro/blob/master/images/image.png)
+![sign-in](https://wallpaperbro.com/img/53490.jpg)
 ## Run it 
 ##### We are using callendar API. Prioir installation is required.
 ```
