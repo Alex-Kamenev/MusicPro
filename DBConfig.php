@@ -1,13 +1,13 @@
 <?php
     //define your host
-    $HostName = 'localhost';
+    $HostName = "localhost";
 
     //define your database name
-    $DatabaseName = 'firstdatabase';
+    $DatabaseName = "firstdatabase";
 
     //define your database user name 
-    $HostUser = 'root';
+    $HostUser = "root";
 
     //define your database password
-    $HostPass = '';
+    $HostPass = null;
 ?>

@@ -27,7 +27,7 @@ connection.connect(function(error){
 });
 
 app.get('/user', function(req, res){
-    connection.query('SELECT * FROM user', function(error, rows, fields){
+    connection.query('SELECT * FROM account', function(error, rows, fields){
         if(error) console.log(error);
         else{
             console.log(rows);

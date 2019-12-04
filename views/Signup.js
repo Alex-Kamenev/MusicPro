@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StyleSheet, Text, TouchableOpacity, TextInput, Dimensions, ImageBackground } from 'react-native';
+import { AppRegistry, View, StyleSheet, Text, TouchableOpacity, TextInput, Dimensions, ImageBackground, Alert} from 'react-native';
 import { Actions } from 'react-native-router-flux';
 
 let deviceHeight = Dimensions.get('window').height;
@@ -13,11 +13,11 @@ class Signup extends React.Component {
   }
 
   state = {
-    student: true,
-    email : '',
-    password: '',
     name: '',
+    email: '',
     phone: '',
+    password: '',
+    student: true,
     teacherCode: '',
     selected: false
   }
@@ -45,6 +45,33 @@ class Signup extends React.Component {
 
   teacherDone = () => {
     Actions.TeacherDash();
+  }
+
+  toServer = () => {
+    const {email} = this.state;
+    const {name} = this.state;
+    const {password} = this.state;
+    const {phone} = this.state;
+
+    fetch('http://192.168.0.8/submit_user_info.php', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        name: name,
+        email: email,
+        password: password,
+        phone: phone,
+      })
+    }).then((response) => response.json())
+      .then((responseJson) => {
+        //show message from server if inserted successfully
+        Alert.alert(responseJson);
+      }).catch((error) => {
+        console.error(error);
+      });
   }
 
   render() {
@@ -111,12 +138,14 @@ class Signup extends React.Component {
           <View style={styles.userInfoInput}>
             <TextInput
               style={styles.textInputStyle}
-              value={this.state.number}
-              placeholder='(XXX)-XXX-XXXX'
-              onChangeText={(number) => this.setState({number: number})}
+              value={this.state.phone}
+              placeholder='number'
+              onChangeText={phone => this.setState({phone})}
             />
           </View>
-          <TouchableOpacity onPress={() => {this.studentDone()}}>
+          <TouchableOpacity 
+            onPress={this.toServer}
+          >
             <View style={styles.doneButton}>
                 <Text style={styles.buttonText}> 
                   Done 
@@ -156,17 +185,16 @@ class Signup extends React.Component {
           <View style={styles.userInfoInput}>
             <TextInput
               style={styles.textInputStyle}
-              value={this.state.number}
-              placeholder='(XXX)-XXX-XXXX'
-              onChangeText={(number) => this.setState({number: number})}
+              value={this.state.phone}
+              placeholder='number'
+              onChangeText={phone => this.setState({phone})}
             />
           </View>
-          <TouchableOpacity onPress={() => 
-
-          {this.teacherDone()}
-          }>
+          <TouchableOpacity 
+            onPress={this.toServer}
+          >
               <View style={styles.doneButton}>
-              < Text style={styles.buttonText}> 
+              <Text style={styles.buttonText}> 
                 Done 
               </Text>
               </View>

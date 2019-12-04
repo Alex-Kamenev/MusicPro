@@ -20,10 +20,24 @@
     //populate password from JSON $obj array and store into $password
     $password = $obj['password'];
 
+    //populate phone number from JSON $obj array and store into $phone
+    $phone = $obj['phone'];
+
     //create SQL query and insert the record into MySQL database table
-    $Sql_Query = "INSERT INTO account (name, email, password) VALUES ('$name', '$email', '$password')";
+    $Sql_Query = "INSERT INTO account (name, email, password, phone) VALUES ('$name', '$email', '$password', '$phone')";
 
     if(mysqli_query($con, $Sql_Query)){
         //insert successfully, throw message
-        $MSG = 'Data inserted successfully.';
+        $MSG = 'You signed up!!!';
+
+        //Convert the message into JSON format
+        $json = json_encode($MSG);
+
+        //echo the message
+        echo $json;
+    }else{
+        echo 'Try again';
     }
+
+    mysqli_close($con);
+?>
