@@ -17,60 +17,6 @@ class TeacherList extends React.Component {
   //
     state = {
         inputValue: '',
-<<<<<<< HEAD
-=======
-        teacherList: [
-        {
-            name: 'Grace Teacher',
-            city: 'Manhattan, NY',
-            instrument: 'Guitar',
-            image: 'https://scontent-lga3-1.xx.fbcdn.net/v/t1.0-9/40482582_1687539791374401_1861957606596149248_n.jpg?_nc_cat=108&_nc_ohc=UYI3jh4nLKYAQneCwzUp7HEKi154WXmQobi1Ttxfl7cSo007KSqq-SrJA&_nc_ht=scontent-lga3-1.xx&oh=4de1bae06bfa24786863fa66e1447ebf&oe=5E815AC5',
-        },
-        {
-            name: 'Andrew Besos',
-            city: 'Queens, NY',
-            instrument: 'Saxophone',
-            image: 'https://thumbs.dreamstime.com/t/professional-headshot-man-56247494.jpg',
-        },
-        {
-            name: 'Mary Sommers',
-            city: 'Manhattan, NY',
-            instrument: 'Flute',
-            image: 'https://images.pexels.com/photos/762020/pexels-photo-762020.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
-        },
-        {
-            name: 'Bernard Johnson',
-            city: 'Brooklyn, NY',
-            instrument: 'Guitar',
-            image: 'https://images.squarespace-cdn.com/content/v1/514ffe4ee4b020d11228d65c/1402503323092-B5P7NO9BACDMY45UI1N0/ke17ZwdGBToddI8pDm48kCPztTQZpDiZMOuuCfUxiyx7gQa3H78H3Y0txjaiv_0fDoOvxcdMmMKkDsyUqMSsMWxHk725yiiHCCLfrh8O1z5QPOohDIaIeljMHgDF5CVlOqpeNLcJ80NK65_fV7S1UYlQ-m0oNUh_9buvyC-f1CSdhG_dNlqULB2ZTz-ses64A-QPhXXvNcU0N8wN7BGx0g/image-asset.jpeg',
-        },
-        {
-            name: 'Tina Smith',
-            city: 'Manhattan, NY',
-            instrument: 'Triangle',
-            image: 'http://blog.scottrklinephoto.com/wp-content/uploads/2013/10/Amy_Wigdahl_Headshot_15E9688-1024x683.jpg',
-        },
-        {
-            name: 'Richard Martin',
-            city: 'Manhattan, NY',
-            instrument: 'Guitar',
-            image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80',
-        },
-        {
-            name: 'Liam West',
-            city: 'Brooklyn, NY',
-            instrument: 'Guitar',
-            image: 'https://image1.masterfile.com/getImage/Njk4LTA3NTg4MzA1ZW4uMDAwMDAwMDA=AOcI0K/698-07588305en_Masterfile.jpg',
-        },
-        {
-            name: 'Cynthia Williams',
-            city: 'Manhattan, NY',
-            instrument: 'Flute',
-            image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRYW_ycIBW5Y4UrGN_We1RKTF966PjTYfdljzk_HJochHbcq9lx',
-        },
-        ],
-
->>>>>>> ad53fa391d3f6ce93af79e4db1d94d922cd87f5a
         data: [],
     }
 
@@ -89,12 +35,10 @@ handleTextChange = inputValue => {
 };
 
 handleCalendarPress = () => {
-    Actions.SudentCalendar();
+    Actions.StudentDash();
 }
 
-handleStudentHome = () => {
-    Actions.StudentDash();
-    
+handleProfilePress = () => {
 }
 
 handleCheckPress = () => {
@@ -108,18 +52,14 @@ handleCheckPress = () => {
       <View style={styles.container}>
                 <View style={styles.topBar}>
                     <View style={styles.leftContainer}>
-                    <TouchableHighlight
-                        onPress={this.handleStudentHome}
-                    >
                     <Image 
                         source={{ uri: 'https://www.pace.edu/sites/default/files/styles/news_item_675x450/public/marijoRussel_OGrady_DAILY_0.jpg?itok=viugcOqU' }}
                         style={styles.imageMain}
                     />
-                    </TouchableHighlight>
                     </View>
                     <View style={styles.middleContainer}>
                         <Text style={styles.nameText}>
-                            Student User
+                            Sarah Gibney
                         </Text>
                     </View>
                     <View style={styles.rightContainer}>
