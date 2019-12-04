@@ -96,6 +96,7 @@ class Signup extends React.Component {
               value={this.state.email}
               placeholder='email'
               onChangeText={(email) => this.setState({email: email})}
+              keyboardType='email-address'
             />
           </View>
           <View style={styles.userInfoInput}>
@@ -104,6 +105,7 @@ class Signup extends React.Component {
               value={this.state.password}
               placeholder='password'
               onChangeText={(password) => this.setState({password: password})}
+              secureTextEntry={true}
             />
           </View>
           <View style={styles.userInfoInput}>
@@ -115,11 +117,11 @@ class Signup extends React.Component {
             />
           </View>
           <TouchableOpacity onPress={() => {this.studentDone()}}>
-          <View style={styles.doneButton}>
-              < Text style={styles.buttonText}> 
-                Done 
-              </Text>
-              </View>
+            <View style={styles.doneButton}>
+                <Text style={styles.buttonText}> 
+                  Done 
+                </Text>
+            </View>
           </TouchableOpacity>
         </View> 
         : 
@@ -139,6 +141,7 @@ class Signup extends React.Component {
               value={this.state.email}
               placeholder='email'
               onChangeText={(email) => this.setState({email: email})}
+              keyboardType='email-address'
             />
           </View>
           <View style={styles.userInfoInput}>
@@ -147,6 +150,7 @@ class Signup extends React.Component {
               value={this.state.password}
               placeholder='password'
               onChangeText={(password) => this.setState({password: password})}
+              secureTextEntry={true}
             />
           </View>
           <View style={styles.userInfoInput}>

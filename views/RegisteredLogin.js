@@ -102,6 +102,7 @@ class RegisteredLogin extends React.Component {
                 value={this.state.password}
                 placeholder="password"
                 onChangeText={password => this.setState({ password: password })}
+                secureTextEntry={true}
               />
             </View>
 

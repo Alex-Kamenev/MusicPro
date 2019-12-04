@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { AppRegistry, Text, View, StyleSheet, Image, Dimensions, ScrollView, TextInput, TouchableHighlight } from 'react-native';
+import { FlatList, AppRegistry, Text, View, StyleSheet, Image, Dimensions, ScrollView, TextInput, TouchableHighlight } from 'react-native';
 import { Constants } from 'expo';
 import { Actions } from 'react-native-router-flux';
 
@@ -15,9 +15,9 @@ class TeacherList extends React.Component {
   }
 
   //
-  state = {
-    inputValue: '',
-    teacherList: [
+    state = {
+        inputValue: '',
+        teacherList: [
         {
             name: 'Grace Jacobs',
             city: 'Manhattan, NY',
@@ -66,8 +66,21 @@ class TeacherList extends React.Component {
             instrument: 'Flute',
             image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRYW_ycIBW5Y4UrGN_We1RKTF966PjTYfdljzk_HJochHbcq9lx',
         },
-    ]
-}
+        ],
+
+        data: [],
+    }
+
+    fetchData = async()=>{
+        const response = await fetch('http://10.10.143.19:9090/user');
+        const users = await response.json();
+        this.setState({data: users});
+    }
+
+    componentDidMount(){
+        this.fetchData();
+    }
+
 
 handleTextChange = inputValue => {
     this.setState({ inputValue });
@@ -82,7 +95,9 @@ handleProfilePress = () => {
 
 handleCheckPress = () => {
     Actions.TeacherCalendar();
-  }
+}
+
+
 
   render() {
     return (
@@ -163,6 +178,44 @@ handleCheckPress = () => {
                         </View>
                     </View>
                 ))}
+
+                <FlatList
+                    data={this.state.data}
+                    keyExtractor={(item, index) => index.toString()}
+                    
+                    renderItem={({item}) => 
+                        <View style={styles.listContainer}>   
+                            <View style={styles.imageContainer}>
+                                <Image
+                                    style={styles.image}
+                                    source={{uri: item.image}}
+                                >
+                                </Image>
+                            </View>                             
+                            <View style={styles.nameContainer}>
+                                <Text style={styles.nameText}>
+                                    {item.name}
+                                </Text>
+                                <Text style={styles.infoText}>
+                                    {item.location}
+                                </Text>
+                                <Text style={styles.infoText}>
+                                    {item.instrument}
+                                </Text>
+                            </View>
+                            <View style={styles.checkContainer}>
+                                <TouchableHighlight
+                                   onPress={this.handleCheckPress}
+                                >
+                                    <Image 
+                                        source={{ uri: 'http://fa2png.io/media/icons/font-awesome/4-7-0/check-square/256/0/274156_none.png' }}
+                                        style={styles.icon}
+                                    />
+                                </TouchableHighlight>
+                            </View>
+                        </View>
+                    }
+                />
                 </ScrollView>
             </View>
     );
