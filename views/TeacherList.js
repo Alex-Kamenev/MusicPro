@@ -159,7 +159,7 @@ handleCheckPress = () => {
                                 >
                                     <Image
                                         style={styles.icon}
-                                        source={{uri: list.picture}}
+                                        source={{uri: 'http://fa2png.io/media/icons/font-awesome/4-7-0/check-square/256/0/274156_none.png'}}
                                     />
                                 </TouchableHighlight>
                             </View>
