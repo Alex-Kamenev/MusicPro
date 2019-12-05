@@ -1,5 +1,4 @@
 # MusicPro
-### made with love in React Native
 #### MusicPro is a unique solution for those who love music.
 ##### The application connects music student and educators in the single app making scheduling experience a matter of a millisecond.  
 ## Functionality
@@ -15,3 +14,5 @@ npm install
 npm install --save react-native-calendars 
 expo start
 ```
+
+##### made with love in React Native
