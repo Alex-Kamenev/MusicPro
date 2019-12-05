@@ -12,10 +12,15 @@ app.use(bodyParser.json({type:'application/json'}));
 app.use(bodyParser.urlencoded({extended: true}));
 
 var connection = mysql.createConnection({
+    //host: 'shareddb-f.hosting.stackcp.net',
     host: 'localhost',
+    //user: 'usernamegoeshere',
     user: 'root',
-    password: '', 
+    //password: 'passwordhere_', 
+    password: '',
+    //database: 'firstdatabase-3639ae5b',
     database: 'firstdatabase',
+    //port: '53201',
     port: '3306',
 });
 

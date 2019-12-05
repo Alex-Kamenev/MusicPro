@@ -51,11 +51,12 @@ class RegisteredLogin extends React.Component {
 
   confirm =()=> {
     const {username, password} = this.state;
+
     fetch('http://10.163.22.205/verify.php', {
       method: 'POST',
       header: {
         'Accept': 'application/json',
-        'Content-type': 'application/json'
+        'Content-type': 'application/json',
       },
       body: JSON.stringify({
         username: username,

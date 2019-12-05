@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { FlatList, AppRegistry, Text, View, StyleSheet, Image, Dimensions, ScrollView, TextInput, TouchableHighlight } from 'react-native';
+import { AppRegistry, Text, View, StyleSheet, Image, Dimensions, ScrollView, TextInput, TouchableHighlight } from 'react-native';
 import { Constants } from 'expo';
 import { Actions } from 'react-native-router-flux';
 
@@ -14,20 +14,60 @@ class TeacherList extends React.Component {
 
   }
 
-  //
     state = {
         inputValue: '',
         data: [],
-    }
-
-    fetchData = async()=>{
-        const response = await fetch('http://10.163.22.205:3000/user');
-        const users = await response.json();
-        this.setState({data: users});
-    }
-
-    componentDidMount(){
-        this.fetchData();
+        teacher: 
+        [
+            {
+                name: 'Grace Jacobs',
+                location: 'Manhattan, NY',
+                instrument: 'Guitar',
+                picture: 'https://scontent-lga3-1.xx.fbcdn.net/v/t1.0-9/40482582_1687539791374401_1861957606596149248_n.jpg?_nc_cat=108&_nc_ohc=UYI3jh4nLKYAQneCwzUp7HEKi154WXmQobi1Ttxfl7cSo007KSqq-SrJA&_nc_ht=scontent-lga3-1.xx&oh=4de1bae06bfa24786863fa66e1447ebf&oe=5E815AC5',
+            },
+            {
+                name: 'Andrew Besos',
+                location: 'Queens, NY',
+                instrument: 'Saxopphone',
+                picture: 'https://thumbs.dreamstime.com/t/professional-headshot-man-56247494.jpg',
+            },
+            {
+                name: 'Mary Sommers',
+                location: 'Manhattan, NY',
+                instrument: 'Flute',
+                picture: 'https://images.pexels.com/photos/762020/pexels-photo-762020.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
+            },
+            {
+                name: 'Bernard Johnson',
+                location: 'Brooklyn, NY',
+                instrument: 'Guitar',
+                picture: 'https://images.squarespace-cdn.com/content/v1/514ffe4ee4b020d11228d65c/1402503323092-B5P7NO9BACDMY45UI1N0/ke17ZwdGBToddI8pDm48kCPztTQZpDiZMOuuCfUxiyx7gQa3H78H3Y0txjaiv_0fDoOvxcdMmMKkDsyUqMSsMWxHk725yiiHCCLfrh8O1z5QPOohDIaIeljMHgDF5CVlOqpeNLcJ80NK65_fV7S1UYlQ-m0oNUh_9buvyC-f1CSdhG_dNlqULB2ZTz-ses64A-QPhXXvNcU0N8wN7BGx0g/image-asset.jpeg',
+            },
+            {
+                name: 'Tina Smith',
+                location: 'Manhattan, NY',
+                instrument: 'Triangle',
+                picture: 'http://blog.scottrklinephoto.com/wp-content/uploads/2013/10/Amy_Wigdahl_Headshot_15E9688-1024x683.jpg',
+            },
+            {
+                name: 'Richard Martin',
+                location: 'Manhattan, NY',
+                instrument: 'Guitar',
+                picture: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80',
+            },
+            {
+                name: 'Liam West',
+                location: 'Brooklyn, NY',
+                instrument: 'Brooklyn, NY',
+                picture: 'https://image1.masterfile.com/getImage/Njk4LTA3NTg4MzA1ZW4uMDAwMDAwMDA=AOcI0K/698-07588305en_Masterfile.jpg',
+            },
+            {
+                name: 'Cynthia Williams',
+                location: 'Manhattan, NY',
+                instrument: 'Flute',
+                picture: 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRYW_ycIBW5Y4UrGN_We1RKTF966PjTYfdljzk_HJochHbcq9lx',
+            },
+        ]
     }
 
 handleTextChange = inputValue => {
@@ -83,53 +123,49 @@ handleCheckPress = () => {
                 </View>
                 <View style={styles.searchBar}>
                     <Image 
-                            source={{ uri: 'http://fa2png.io/media/icons/font-awesome/4-7-0/search/256/0/274156_none.png' }}
-                            style={styles.searchIcon}
+                        source={{ uri: 'http://fa2png.io/media/icons/font-awesome/4-7-0/search/256/0/274156_none.png' }}
+                        style={styles.searchIcon}
                      />
                      <TextInput
                     value={this.state.inputValue}
                     onChangeText={this.handleTextChange}
                     style={styles.searchInput}
                     />
-                    
                 </View>
-                <FlatList
-                    data={this.state.data}
-                    keyExtractor={(item, index) => index.toString()}
-                    
-                    renderItem={({item}) => 
-                        <View style={styles.listContainer}>   
+
+                <ScrollView>
+                    {this.state.teacher.map((list) => (
+                        <View style={styles.listContainer}>
                             <View style={styles.imageContainer}>
                                 <Image
                                     style={styles.image}
-                                    source={{uri: item.image}}
-                                >
-                                </Image>
-                            </View>                             
+                                    source={{uri: list.picture}}
+                                />
+                            </View>
                             <View style={styles.nameContainer}>
                                 <Text style={styles.nameText}>
-                                    {item.name}
+                                    {list.name}
                                 </Text>
                                 <Text style={styles.infoText}>
-                                    {item.location}
+                                    {list.location}
                                 </Text>
                                 <Text style={styles.infoText}>
-                                    {item.instrument}
+                                    {list.instrument}
                                 </Text>
                             </View>
                             <View style={styles.checkContainer}>
                                 <TouchableHighlight
-                                   onPress={this.handleCheckPress}
+                                    onPress={this.handleCheckPress}
                                 >
-                                    <Image 
-                                        source={{ uri: 'http://fa2png.io/media/icons/font-awesome/4-7-0/check-square/256/0/274156_none.png' }}
+                                    <Image
                                         style={styles.icon}
+                                        source={{uri: list.picture}}
                                     />
                                 </TouchableHighlight>
                             </View>
                         </View>
-                    }
-                />
+                    ))}
+                </ScrollView>
             </View>
     );
   }
