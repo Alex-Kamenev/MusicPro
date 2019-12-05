@@ -11,6 +11,7 @@
 ##### We are using callendar API. Prioir installation is required.
 ```
 npm install
+npm i react-native-keyboard-aware-scroll-view --save
 npm install --save react-native-calendars 
 expo start
 ```
