@@ -5,6 +5,7 @@ import { StyleSheet, Text, View, TouchableHighlight } from 'react-native';
 import { Router, Scene} from 'react-native-router-flux';
 //this imports the other screen, usually you'll have a list of these for all the screens in teh app
 import * as firebase from 'firebase';
+// I love frogs
 
 import Login from './views/Login';
 import RegisteredLogin from './views/RegisteredLogin';
