@@ -23,5 +23,5 @@ expo start
 #### Chen
 #### Maksym Karunos
 #### Aleksander E Kamenev 
-#### Grace k Jacobs
+#### Grace K Jacobs
 #### Alejandro Gonzalez
