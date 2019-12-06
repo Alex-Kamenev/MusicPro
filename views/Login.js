@@ -12,6 +12,7 @@ class Login extends React.Component {
     componentWillMount(){
 
     }
+    // I love frogs
 
     loginPressed = () => {
         // this is how you switch screens
