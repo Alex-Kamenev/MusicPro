@@ -1,16 +1,6 @@
 import React from "react";
-import {
-  View,
-  Text,
-  StyleSheet,
-  TextInput,
-  Dimensions,
-  TouchableOpacity,
-  Image,
-  ImageBackground
-} from "react-native";
+import {View, Text, StyleSheet, TextInput, Dimensions, TouchableOpacity, Alert, ImageBackground} from "react-native";
 import { Actions } from "react-native-router-flux";
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 
 let deviceHeight = Dimensions.get("window").height;
 let deviceWidth = Dimensions.get("window").width;
@@ -20,8 +10,8 @@ class RegisteredLogin extends React.Component {
   componentWillMount() {}
 
   state = {
-    username: "",
-    password: "",
+    username: '',
+    password: '',
     student: true,
     data: [],
   };
@@ -51,9 +41,10 @@ class RegisteredLogin extends React.Component {
   }
 
   confirm =()=> {
-    const {username, password} = this.state;
+    const {password} = this.state;
+    const {username} = this.state;
 
-    fetch('http://10.163.22.205/verify.php', {
+    fetch('http://10.10.130.189/verify.php', {
       method: 'POST',
       header: {
         'Accept': 'application/json',
@@ -66,7 +57,7 @@ class RegisteredLogin extends React.Component {
     }).then((response) => response.json())
       .then((responseJson) => {
       if(responseJson == 'Welcome'){
-        alert('Welcome');
+        Alert.alert(responseJson);
         {this.state.student
         ?
         Actions.StudentDash()
@@ -74,21 +65,16 @@ class RegisteredLogin extends React.Component {
         Actions.TeacherDash()
         }
       }else{
-        alert('Wrong Input')
+        alert(responseJson)
       }
     }).catch((error)=>{
-      console.error(error);
+      console.error("OMG: " + error);
     });
   }
 
   render() {
     return (
-      <KeyboardAwareScrollView
-      style={{ backgroundColor: '#4c69a5' }}
-      resetScrollToCoords={{ x: 0, y: 0 }}
-      contentContainerStyle={styles.container}
-      scrollEnabled={true}
-    >
+      // this is just random filler for the template, but this is where what the user sees is rendered
       <View style={styles.container}>
         <ImageBackground
           style={styles.background}
@@ -158,9 +144,10 @@ class RegisteredLogin extends React.Component {
               <TouchableOpacity
                 onPress={() => {
                   {
-                    this.state.student
+                    /*this.state.student
                       ? this.enterStudentDash()
-                      : this.enterTeacherDash()
+                      : this.enterTeacherDash()*/
+                      this.confirm();
                   }
                 }}
                 style={styles.button}
@@ -168,10 +155,10 @@ class RegisteredLogin extends React.Component {
               >
                 <Text style={styles.buttonText}>Confirm</Text>
               </TouchableOpacity>
+
             </View>
         </ImageBackground>
       </View>
-      </KeyboardAwareScrollView>
     );
   }
 }

@@ -1,7 +1,6 @@
 import React from 'react';
 import { AppRegistry, View, StyleSheet, Text, TouchableOpacity, TextInput, Dimensions, ImageBackground, Alert} from 'react-native';
 import { Actions } from 'react-native-router-flux';
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 
 let deviceHeight = Dimensions.get('window').height;
 let deviceWidth = Dimensions.get('window').width;
@@ -54,7 +53,7 @@ class Signup extends React.Component {
     const {password} = this.state;
     const {phone} = this.state;
 
-    fetch('http://10.163.22.205/submit_user_info.php', {
+    fetch('http://10.10.130.189/submit_user_info.php', {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
@@ -79,21 +78,15 @@ class Signup extends React.Component {
           Actions.TeacherDash();
           }
         }else{
-          alert('Please try again');
+          //Actions.Login();
         }
       }).catch((error) => {
-        console.error(error);
+        console.error("OMG: " + error);
       });
   }
 
   render() {
     return (
-      <KeyboardAwareScrollView
-      style={{ backgroundColor: '#4c69a5' }}
-      resetScrollToCoords={{ x: 0, y: 0 }}
-      contentContainerStyle={styles.container}
-      scrollEnabled={true}
-    >
       <View style={styles.container}>
         <ImageBackground
           style={styles.background}
@@ -221,7 +214,6 @@ class Signup extends React.Component {
         }
       </ImageBackground>
       </View>
-      </KeyboardAwareScrollView>
     );
   }
 }
@@ -306,4 +298,5 @@ const styles = StyleSheet.create({
 //this lets the component get imported other places
 export default Signup;
 
-//https://reactnativecode.com/react-native-insert-text-input-data-to-mysql-server/
+//https://reactnativecode.com/react-native-user-registration-example-tutorial/    store in database
+//https://reactnativecode.com/react-native-user-login-using-php-mysql/            verify login
