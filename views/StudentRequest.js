@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { AppRegistry, Text, View, StyleSheet, Image, Dimensions, ScrollView, TextInput, TouchableHighlight } from 'react-native';
 import { Constants, apisAreAvailable } from 'expo';
 import { Actions } from 'react-native-router-flux';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 
 
 let deviceHeight = Dimensions.get('window').height;
@@ -48,6 +49,12 @@ handleBackArrowPress = () => {
 
   render() {
     return (
+    <KeyboardAwareScrollView
+      style={{ backgroundColor: '#4c69a5' }}
+      resetScrollToCoords={{ x: 0, y: 0 }}
+      contentContainerStyle={styles.container}
+      scrollEnabled={true}
+    >
       <View style={styles.container}>
         <View style={{ display: this.state.studentRequestDisplay}}>
             <View style={styles.topBar}>
@@ -90,8 +97,8 @@ handleBackArrowPress = () => {
                     from to (12 - 1 PM)
                 </Text>
                 <TextInput
-                    value={this.state.email}
-                    onChangeText={this.handleEmailChange}
+                    value={this.state.time}
+                    onChangeText={this.handleTimeChange}
                     style={styles.inputText}
                 />
             </View>
@@ -107,6 +114,7 @@ handleBackArrowPress = () => {
             </View>
           </View>
       </View>
+      </KeyboardAwareScrollView>
     );
   }
 }

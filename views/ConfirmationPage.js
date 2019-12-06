@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { AppRegistry, Text, View, StyleSheet, Image, Dimensions, ScrollView, TextInput, TouchableHighlight } from 'react-native';
 import { Constants, apisAreAvailable } from 'expo';
 import { Actions } from 'react-native-router-flux';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 
 let deviceHeight = Dimensions.get('window').height;
 let deviceWidth = Dimensions.get('window').width;
@@ -21,7 +22,7 @@ handleOKPress = () => {
     return (
       <View style={styles.container}>
         <Text style={styles.title}>
-            Your request has been submitted!
+            Your request has been submitted! 
         </Text>
         <TouchableHighlight
             onPress={this.handleOKPress}

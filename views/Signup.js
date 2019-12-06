@@ -1,6 +1,7 @@
 import React from 'react';
 import { AppRegistry, View, StyleSheet, Text, TouchableOpacity, TextInput, Dimensions, ImageBackground, Alert} from 'react-native';
 import { Actions } from 'react-native-router-flux';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 
 let deviceHeight = Dimensions.get('window').height;
 let deviceWidth = Dimensions.get('window').width;
@@ -87,6 +88,12 @@ class Signup extends React.Component {
 
   render() {
     return (
+      <KeyboardAwareScrollView
+      style={{ backgroundColor: '#4c69a5' }}
+      resetScrollToCoords={{ x: 0, y: 0 }}
+      contentContainerStyle={styles.container}
+      scrollEnabled={true}
+    >
       <View style={styles.container}>
         <ImageBackground
           style={styles.background}
@@ -214,6 +221,7 @@ class Signup extends React.Component {
         }
       </ImageBackground>
       </View>
+      </KeyboardAwareScrollView>
     );
   }
 }

@@ -13,6 +13,7 @@ import {
 } from "react-native";
 import { Constants } from "expo";
 import { Actions } from "react-native-router-flux";
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 
 let deviceHeight = Dimensions.get("window").height;
 let deviceWidth = Dimensions.get("window").width;

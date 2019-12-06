@@ -15,6 +15,7 @@ import {
 import { Constants } from "expo";
 import { Actions } from "react-native-router-flux";
 import { Calendar, CalendarList, Agenda } from "react-native-calendars";
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 
 let deviceHeight = Dimensions.get("window").height;
 let deviceWidth = Dimensions.get("window").width;
@@ -74,6 +75,12 @@ class CalendarTeacher extends React.Component {
 
   render() {
     return (
+      <KeyboardAwareScrollView
+      style={{ backgroundColor: '#4c69a5' }}
+      resetScrollToCoords={{ x: 0, y: 0 }}
+      contentContainerStyle={styles.container}
+      scrollEnabled={true}
+    >
       // this is just random filler for the template, but this is where what the user sees is rendered
       <View style={styles.container}>
         <View style={styles.topBar}>
@@ -203,6 +210,7 @@ class CalendarTeacher extends React.Component {
           ))}
         </ScrollView>
       </View>
+     </KeyboardAwareScrollView>
     );
   }
 }

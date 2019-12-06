@@ -10,6 +10,7 @@ import {
   ImageBackground
 } from "react-native";
 import { Actions } from "react-native-router-flux";
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 
 let deviceHeight = Dimensions.get("window").height;
 let deviceWidth = Dimensions.get("window").width;
@@ -82,7 +83,12 @@ class RegisteredLogin extends React.Component {
 
   render() {
     return (
-      // this is just random filler for the template, but this is where what the user sees is rendered
+      <KeyboardAwareScrollView
+      style={{ backgroundColor: '#4c69a5' }}
+      resetScrollToCoords={{ x: 0, y: 0 }}
+      contentContainerStyle={styles.container}
+      scrollEnabled={true}
+    >
       <View style={styles.container}>
         <ImageBackground
           style={styles.background}
@@ -162,10 +168,10 @@ class RegisteredLogin extends React.Component {
               >
                 <Text style={styles.buttonText}>Confirm</Text>
               </TouchableOpacity>
-
             </View>
         </ImageBackground>
       </View>
+      </KeyboardAwareScrollView>
     );
   }
 }
