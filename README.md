@@ -17,3 +17,11 @@ expo start
 ```
 
 ##### made with love in React Native
+
+## Authors
+
+#### Chen
+#### Maksym Karunos
+#### Aleksander E Kamenev 
+#### Grace K Jacobs
+#### Alejandro Gonzalez

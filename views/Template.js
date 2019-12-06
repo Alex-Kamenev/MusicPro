@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
+import * as firebase from 'firebase';
 
 class ClassName extends React.Component {
 

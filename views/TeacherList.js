@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { AppRegistry, Text, View, StyleSheet, Image, Dimensions, ScrollView, TextInput, TouchableHighlight } from 'react-native';
 import { Constants } from 'expo';
 import { Actions } from 'react-native-router-flux';
+import * as firebase from 'firebase';
 
 
 let deviceHeight = Dimensions.get('window').height;

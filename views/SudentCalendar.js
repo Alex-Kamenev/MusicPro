@@ -12,7 +12,9 @@ import {
   TextInput,
   TouchableHighlight
 } from "react-native";
+//Alejandro: only weirdos do this ^^^^
 import { Constants } from "expo";
+import * as firebase from 'firebase';
 import { Actions } from "react-native-router-flux";
 import { Calendar, CalendarList, Agenda } from "react-native-calendars";
 
