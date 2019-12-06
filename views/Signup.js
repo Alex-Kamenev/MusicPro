@@ -12,7 +12,7 @@ class Signup extends React.Component {
   componentWillMount(){
 
   }
-
+  // ALEJANDRO, PLEASE START WORKING 
   state = {
     name: '',
     email: '',
