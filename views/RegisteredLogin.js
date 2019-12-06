@@ -9,8 +9,10 @@ import {
   Image,
   ImageBackground
 } from "react-native";
+//Alejandro: only weirdos do this ^^^^
 import { Actions } from "react-native-router-flux";
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
+import * as firebase from 'firebase';
 
 let deviceHeight = Dimensions.get("window").height;
 let deviceWidth = Dimensions.get("window").width;

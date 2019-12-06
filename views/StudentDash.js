@@ -10,8 +10,10 @@ import {
   TextInput,
   TouchableHighlight
 } from "react-native";
+//Alejandro: only weirdos do this ^^^^
 import { Constants } from "expo";
 import { Actions } from "react-native-router-flux";
+import * as firebase from 'firebase';
 
 let deviceHeight = Dimensions.get("window").height;
 let deviceWidth = Dimensions.get("window").width;
