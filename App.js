@@ -21,6 +21,7 @@ import ConfirmationPage from './views/ConfirmationPage';
 
 export default function App() {
 
+  const firebase = require("firebase");
   const firebaseConfig = {
     apiKey: "AIzaSyBibeHWhuTpX-pAob9a8xcY6ucwR-_8iw8",
     authDomain: "musicpro-1a762.firebaseapp.com",
@@ -28,8 +29,7 @@ export default function App() {
     storageBucket: "musicpro-1a762.appspot.com",
   };
   const firebaseApp = firebase.initializeApp(firebaseConfig);
-
-
+  
   return (
     //this is the screen router, it will move people from screen to screen
     <Router>

@@ -3,6 +3,7 @@ import { AppRegistry, Text, View, StyleSheet, Image, Dimensions, ScrollView, Tex
 import { Constants } from 'expo';
 import { Actions } from 'react-native-router-flux';
 import { Calendar, CalendarList, Agenda } from "react-native-calendars";
+import * as firebase from 'firebase';
 
 let deviceHeight = Dimensions.get("window").height;
 let deviceWidth = Dimensions.get("window").width;
