@@ -1,4 +1,3 @@
-
 import React, { Component } from 'react';
 import { AppRegistry, Text, View, StyleSheet, Image, Dimensions, ScrollView, TextInput, TouchableHighlight } from 'react-native';
 import { Constants } from 'expo';
@@ -276,4 +275,3 @@ const styles = StyleSheet.create({
 
 //this lets the component get imported other places
 export default TeacherList;
-
