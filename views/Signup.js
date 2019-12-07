@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { AppRegistry, View, StyleSheet, Text, TouchableOpacity, TextInput, Dimensions, ImageBackground, Alert} from 'react-native';
 import { Actions } from 'react-native-router-flux';
