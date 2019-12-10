@@ -32,6 +32,8 @@ class StudentDash extends React.Component {
     //this pulls the userdata as a prop from the login, then pulls specifically the users name, then replaces the quotes on the string
     name: JSON.stringify(this.props.userData['name']).replace(/['"]+/g, ''),
     
+
+    //this will have to be loaded in from props.userdata  
     lessonsList: [
       {
         name: "Grace Jacobs",

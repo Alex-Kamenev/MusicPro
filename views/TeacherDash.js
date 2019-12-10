@@ -107,7 +107,7 @@ class TeacherDash extends React.Component {
             </TouchableHighlight>
           </View>
           <View style={styles.middleContainer}>
-            <Text style={styles.profileText}>Teacher User</Text>
+            <Text style={styles.profileText}>{JSON.stringify(this.props.userData['name']).replace(/['"]+/g, '')}</Text>
           </View>
           <View style={styles.rightContainer}>
             <TouchableHighlight onPress={this.handleCalendarPress}>

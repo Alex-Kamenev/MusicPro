@@ -66,7 +66,14 @@ class Signup extends React.Component {
               name: name,
               userType: "student"
             });
-            Actions.StudentDash();
+            //this isn't perfect, will need to change
+            var ref = db.ref(`users/${user.uid}/info/`);
+            ref.on("value", function(snapshot) {
+              var userData = snapshot.val();
+              Actions.StudentDash({userData: userData});
+            }, function (errorObject) {
+              alert("The read failed: " + errorObject.code);
+            });
           }
         });
       } else {
@@ -87,7 +94,14 @@ class Signup extends React.Component {
               name: name,
               userType: "teacher"
             });
-            Actions.TeacherDash();
+            //this isn't perfect, will need to change
+            var ref = db.ref(`users/${user.uid}/info/`);
+            ref.on("value", function(snapshot) {
+              var userData = snapshot.val();
+              Actions.TeacherDash({userData: userData});
+            }, function (errorObject) {
+              alert("The read failed: " + errorObject.code);
+            });
           }
         });
       }
