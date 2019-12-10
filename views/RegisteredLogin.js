@@ -41,17 +41,18 @@ class RegisteredLogin extends React.Component {
         //here we get the user data and check if they're a student or teacher
         var user = firebase.auth().currentUser
         var db = firebase.database();
-        var ref = db.ref(`users/${user.uid}/info/userType`);
-        var userType = ""
+        var ref = db.ref(`users/${user.uid}/info/`);
         ref.on("value", function(snapshot) {
-          userType = snapshot.val();
+          var userData = snapshot.val();
+          //this is the user type (teacher/student)
+          var userType = JSON.stringify(userData['userType']);
           //here if the function finds if the user is a student/teacher, it loads each respective view
-          if (userType == "student"){
+          if (userType == '"student"'){
             //if the user is a student
-            Actions.StudentDash();
+            Actions.StudentDash({userData: userData});
           } else {
             //if the user is a teacher
-            Actions.TeacherDash();
+            Actions.TeacherDash({userData: userData});
           }
         }, function (errorObject) {
           alert("The read failed: " + errorObject.code);

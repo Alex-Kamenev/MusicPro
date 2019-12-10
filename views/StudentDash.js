@@ -20,14 +20,18 @@ let deviceWidth = Dimensions.get("window").width;
 
 class StudentDash extends React.Component {
   //I always like keeping this here, it is for performing actions before the component (the screen) loads
-  componentWillMount() {}
+  componentWillMount() {
+    
+  }
 
   state = {
     date: "",
     inputValue: "",
     teacherDashDisplay: "block",
     teacherProfileScrollDisplay: "none",
-
+    //this pulls the userdata as a prop from the login, then pulls specifically the users name, then replaces the quotes on the string
+    name: JSON.stringify(this.props.userData['name']).replace(/['"]+/g, ''),
+    
     lessonsList: [
       {
         name: "Grace Jacobs",
@@ -77,7 +81,7 @@ class StudentDash extends React.Component {
             />
           </View>
           <View style={styles.middleContainer}>
-            <Text style={styles.profileText}>Student User</Text>
+            <Text style={styles.profileText}>{this.state.name}</Text>
           </View>
           <View style={styles.rightContainer}>
             <TouchableHighlight onPress={this.handleCalendarStudentPress}>
