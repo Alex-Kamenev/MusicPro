@@ -34,6 +34,8 @@ class Signup extends React.Component {
     })
   }
 
+  
+
 
   //firebase account creation and automatic login
   onDonePressed = () => {
@@ -44,40 +46,49 @@ class Signup extends React.Component {
       //this creates an accessible reference to this.state, we could also use .bind(this)
       var name = this.state.name;
       var email = this.state.email;
+      var problemWithLogin = false;
       //if the person is a student or a teacher
       if (this.state.student == true){
         //creates the user and adds them to the auth section of firebase
         firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password).catch(function(error) {
           var errorMessage = error.message;
           alert(errorMessage);
+          problemWithLogin = true;
         }).then(function() {
           //brings up the users data from auth 
           var user = firebase.auth().currentUser;
-          //copies the users data from auth to the database, adding the name and whether they're a student or a teacher
-          db.ref(`users/${user.uid}/info`).set({
-            email: user.email,
-            uid: user.uid,
-            name: name,
-            userType: "student"
-          });
-          Actions.StudentDash();
+          //checks if there was a problem, there are better ways to do this (this is temporary)
+          if (problemWithLogin == false){
+            //copies the users data from auth to the database, adding the name and whether they're a student or a teacher
+            db.ref(`users/${user.uid}/info`).set({
+              email: user.email,
+              uid: user.uid,
+              name: name,
+              userType: "student"
+            });
+            Actions.StudentDash();
+          }
         });
       } else {
         //creates the user and adds them to the auth section of firebase
         firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password).catch(function(error) {
           var errorMessage = error.message;
           alert(errorMessage);
+          problemWithLogin = true;
         }).then(function() {
           //brings up the users data from auth 
           var user = firebase.auth().currentUser;
-          //copies the users data from auth to the database, adding the name and whether they're a student or a teacher
-          db.ref(`users/${user.uid}/info`).set({
-            email: user.email,
-            uid: user.uid,
-            name: name,
-            userType: "teacher"
-          });
-          Actions.TeacherDash();
+          //checks if there was a problem, there are better ways to do this (this is temporary)
+          if (problemWithLogin == false){
+            //copies the users data from auth to the database, adding the name and whether they're a student or a teacher
+            db.ref(`users/${user.uid}/info`).set({
+              email: user.email,
+              uid: user.uid,
+              name: name,
+              userType: "teacher"
+            });
+            Actions.TeacherDash();
+          }
         });
       }
     } else {

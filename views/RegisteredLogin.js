@@ -29,28 +29,34 @@ class RegisteredLogin extends React.Component {
   };
 
   onDonePressed = () => {
+    //variable that tells the function if there was an error 
+    var problemWithLogin = false;
     firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password).catch(function(error){
       alert(error);
+      problemWithLogin = true;
     }).then(function(){
       //this is what happens after the user is signed in
-      //here we get the user data and check if they're a student or teacher
-      var user = firebase.auth().currentUser
-      var db = firebase.database();
-      var ref = db.ref(`users/${user.uid}/info/userType`);
-      var userType = ""
-      ref.on("value", function(snapshot) {
-        userType = snapshot.val();
-        //here if the function finds if the user is a student/teacher, it loads each respective view
-        if (userType == "student"){
-          //if the user is a student
-          Actions.StudentDash();
-        } else {
-          //if the user is a teacher
-          Actions.TeacherDash();
-        }
-      }, function (errorObject) {
-        alert("The read failed: " + errorObject.code);
-      });
+      //this if statement checks if there was a problem and executes if there wasn't
+      if (problemWithLogin == false){
+        //here we get the user data and check if they're a student or teacher
+        var user = firebase.auth().currentUser
+        var db = firebase.database();
+        var ref = db.ref(`users/${user.uid}/info/userType`);
+        var userType = ""
+        ref.on("value", function(snapshot) {
+          userType = snapshot.val();
+          //here if the function finds if the user is a student/teacher, it loads each respective view
+          if (userType == "student"){
+            //if the user is a student
+            Actions.StudentDash();
+          } else {
+            //if the user is a teacher
+            Actions.TeacherDash();
+          }
+        }, function (errorObject) {
+          alert("The read failed: " + errorObject.code);
+        });
+      }
     });
   }
 
