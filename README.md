@@ -20,8 +20,8 @@ expo start
 
 ## Authors
 
+#### Grace Jacobs - UX/UI Designer
 #### Eric Anderson - UX/UI Designer
-#### Grace Jacobs - UX/UI Designer, Front End Developer
 #### Aleksander Kamenev - Front End Developer
 #### Yongjie Chen - Front End Developer
 #### Maksym Karunos - Back End Developer, Github Liason
