@@ -12,9 +12,12 @@ import {
   TextInput,
   TouchableHighlight
 } from "react-native";
+//Alejandro: only weirdos do this ^^^^
 import { Constants } from "expo";
 import { Actions } from "react-native-router-flux";
 import { Calendar, CalendarList, Agenda } from "react-native-calendars";
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
+import * as firebase from 'firebase';
 
 let deviceHeight = Dimensions.get("window").height;
 let deviceWidth = Dimensions.get("window").width;
@@ -74,6 +77,12 @@ class CalendarTeacher extends React.Component {
 
   render() {
     return (
+      <KeyboardAwareScrollView
+      style={{ backgroundColor: '#4c69a5' }}
+      resetScrollToCoords={{ x: 0, y: 0 }}
+      contentContainerStyle={styles.container}
+      scrollEnabled={true}
+    >
       // this is just random filler for the template, but this is where what the user sees is rendered
       <View style={styles.container}>
         <View style={styles.topBar}>
@@ -101,15 +110,7 @@ class CalendarTeacher extends React.Component {
                 style={styles.icon}
               />
             </TouchableHighlight>
-            <TouchableHighlight onPress={this.handleProfilePress}>
-              <Image
-                source={{
-                  uri:
-                    "http://fa2png.io/media/icons/foundation-icon-fonts/2015-02-16/pencil/256/0/274156_none.png"
-                }}
-                style={styles.icon}
-              />
-            </TouchableHighlight>
+            
             <TouchableHighlight onPress={this.handleProfilePress}>
               <Image
                 source={{
@@ -211,6 +212,7 @@ class CalendarTeacher extends React.Component {
           ))}
         </ScrollView>
       </View>
+     </KeyboardAwareScrollView>
     );
   }
 }
@@ -237,6 +239,7 @@ const styles = StyleSheet.create({
     width: deviceWidth / 2.5
   },
   rightContainer: {
+    paddingLeft:40,
     width: deviceWidth / 2.5,
     alignItems: "center",
     flexDirection: "row"

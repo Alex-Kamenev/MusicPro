@@ -12,8 +12,10 @@ import {
   TextInput,
   TouchableHighlight
 } from "react-native";
+//Alejandro: only weirdos do this like this ^^^^^
 import { Constants } from "expo";
 import { Actions } from "react-native-router-flux";
+import * as firebase from 'firebase';
 
 let deviceHeight = Dimensions.get("window").height;
 let deviceWidth = Dimensions.get("window").width;
@@ -121,15 +123,6 @@ class TeacherDash extends React.Component {
               <Image
                 source={{
                   uri:
-                    "http://fa2png.io/media/icons/foundation-icon-fonts/2015-02-16/pencil/256/0/274156_none.png"
-                }}
-                style={styles.icon}
-              />
-            </TouchableHighlight>
-            <TouchableHighlight onPress={this.handleProfilePress}>
-              <Image
-                source={{
-                  uri:
                     "http://fa2png.io/media/icons/font-awesome/4-7-0/address-card-o/256/0/274156_none.png"
                 }}
                 style={styles.icon}
@@ -179,10 +172,11 @@ const styles = StyleSheet.create({
   rightContainer: {
     width: deviceWidth / 2.5,
     alignItems: "center",
-    flexDirection: "row"
+    flexDirection: "row",
+    paddingLeft: 40
   },
   dateBar: {
-    height: deviceHeight / 10,
+    height: deviceHeight / 20,
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",

@@ -12,14 +12,19 @@ app.use(bodyParser.json({type:'application/json'}));
 app.use(bodyParser.urlencoded({extended: true}));
 
 var connection = mysql.createConnection({
+    //host: 'shareddb-f.hosting.stackcp.net',
     host: 'localhost',
+    //user: 'usernamegoeshere',
     user: 'root',
-    password: '', 
+    //password: 'passwordhere_', 
+    password: '',
+    //database: 'firstdatabase-3639ae5b',
     database: 'firstdatabase',
+    //port: '53201',
     port: '3306',
 });
 
-var server = app.listen (8120, function(){
+var server = app.listen (3000, function(){
     var host = server.address().address
     var port = server.address().port
     console.log('start');
@@ -42,4 +47,4 @@ app.get('/user', function(req, res){
 });
 
 //https://www.youtube.com/watch?v=ztTM50ZuKNo
-//https://www.youtube.com/watch?v=MY_DEKLQiOU&t=143s
+//https://www.youtube.com/watch?v=MY_DEKLQiOU&t=143

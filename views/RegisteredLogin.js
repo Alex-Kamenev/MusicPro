@@ -9,90 +9,71 @@ import {
   Image,
   ImageBackground
 } from "react-native";
+//Alejandro: only weirdos do this ^^^^
 import { Actions } from "react-native-router-flux";
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
+import * as firebase from 'firebase';
 
 let deviceHeight = Dimensions.get("window").height;
 let deviceWidth = Dimensions.get("window").width;
 
 class RegisteredLogin extends React.Component {
   //I always like keeping this here, it is for performing actions before the component (the screen) loads
-  componentWillMount() {}
+  componentWillMount() {
+
+  }
 
   state = {
-    username: "",
+    email: "",
     password: "",
-    student: true,
   };
 
-  backPressed = () => {
-    Actions.Login();
-  };
-
-  enterTeacherDash = () => {
-    Actions.TeacherDash();
-  };
-
-  enterStudentDash = () => {
-    Actions.StudentDash();
-  };
-
-  studentPressed = () => {
-    this.setState({
-      student: true
-    })
+  onDonePressed = () => {
+    firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password).catch(function(error){
+      alert(error);
+    }).then(function(){
+      //this is what happens after the user is signed in
+      //here we get the user data and check if they're a student or teacher
+      var user = firebase.auth().currentUser
+      var db = firebase.database();
+      var ref = db.ref(`users/${user.uid}/info/userType`);
+      var userType = ""
+      ref.on("value", function(snapshot) {
+        userType = snapshot.val();
+        //here if the function finds if the user is a student/teacher, it loads each respective view
+        if (userType == "student"){
+          //if the user is a student
+          Actions.StudentDash();
+        } else {
+          //if the user is a teacher
+          Actions.TeacherDash();
+        }
+      }, function (errorObject) {
+        alert("The read failed: " + errorObject.code);
+      });
+    });
   }
-
-  teacherPressed = () => {
-    this.setState({
-      student: false
-    })
-  }
-  
 
   render() {
     return (
-      // this is just random filler for the template, but this is where what the user sees is rendered
+      <KeyboardAwareScrollView
+      style={{ backgroundColor: '#4c69a5' }}
+      resetScrollToCoords={{ x: 0, y: 0 }}
+      contentContainerStyle={styles.container}
+      scrollEnabled={true}
+      >
       <View style={styles.container}>
         <ImageBackground
           style={styles.background}
           source={{ uri: "https://wallpaperbro.com/img/53490.jpg" }}
         >
           <Text style={styles.title}>MusicPro</Text>
-            <View style={styles.isTeacherContainer}>
-            
-              <TouchableOpacity
-                onPress={() => {
-                  this.studentPressed();
-                }}
-                style={styles.selectors}
-                activeOpacity={0.7}
-              >
-              {this.state.student
-              ?<Text style={styles.teacherSelectorText}>Student</Text>
-              :<Text style={styles.teacherSelectorTextNo}>Student</Text>
-              }
-              </TouchableOpacity>
-
-              <TouchableOpacity
-                onPress={() => {
-                  this.teacherPressed();
-                }}
-                style={styles.selectors}
-                activeOpacity={0.7}
-              >
-              {this.state.student
-              ?<Text style={styles.studentSelectorTextNo}>Teacher</Text>
-              :<Text style={styles.studentSelectorText}>Teacher</Text>
-              }
-              </TouchableOpacity>
-            </View>
-
             <View style={styles.userInfoInput}>
               <TextInput
                 style={styles.textInputStyle}
-                value={this.state.username}
-                placeholder="username"
-                onChangeText={username => this.setState({ username: username })}
+                value={this.state.email}
+                placeholder="email"
+                onChangeText={email => this.setState({ email: email })}
               />
             </View>
 
@@ -105,36 +86,14 @@ class RegisteredLogin extends React.Component {
                 secureTextEntry={true}
               />
             </View>
-
             <View style={styles.buttonContainer}>
-              
-              <TouchableOpacity
-                onPress={() => {
-                  this.backPressed();
-                }}
-                style={styles.button}
-                activeOpacity={0.6}
-              >
-                <Text style={styles.buttonText}>Back</Text>
-              </TouchableOpacity>
-
-              <TouchableOpacity
-                onPress={() => {
-                  {
-                    this.state.student
-                      ? this.enterStudentDash()
-                      : this.enterTeacherDash()
-                  }
-                }}
-                style={styles.button}
-                activeOpacity={0.6}
-              >
+              <TouchableOpacity onPress={() => this.onDonePressed()}>
                 <Text style={styles.buttonText}>Confirm</Text>
               </TouchableOpacity>
-
             </View>
         </ImageBackground>
       </View>
+      </KeyboardAwareScrollView>
     );
   }
 }
@@ -174,11 +133,12 @@ const styles = StyleSheet.create({
   },
   buttonContainer: {
     alignItems: "center",
-    justifyContent: "space-between",
+    justifyContent: "center",
     flexDirection: "row",
-    height: "90%",
+    height: "5%",
     width: "70%",
-    alignItems: "flex-start"
+    backgroundColor: 'white',
+    borderRadius: 10
   },
   isTeacherContainer: {
     marginTop: 0,
@@ -214,19 +174,9 @@ const styles = StyleSheet.create({
     color: "gray",
     fontSize: 20
   },
-  button: {
-    height: deviceHeight * 0.08,
-    width: "40%",
-    backgroundColor: "white",
-    marginBottom: 5,
-    alignItems: "center",
-    justifyContent: "center",
-    margin: 10,
-    borderRadius: 10
-  },
   buttonText: {
     fontFamily: "HelveticaNeue-Medium",
-    color: "#2c2828"
+    color: "black"
   }
 });
 
