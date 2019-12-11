@@ -100,7 +100,7 @@ class StudentList extends React.Component {
   };
 
   handleProfilePress = () => {
-    Actions.StudentList({userData: this.props.userData});
+    //Actions.StudentList({userData: this.props.userData});
   };
   handleTeacherDash = () => {
     Actions.TeacherDash({userData: this.props.userData});
@@ -123,7 +123,7 @@ class StudentList extends React.Component {
               </TouchableHighlight>
             </View>
             <View style={styles.middleContainer}>
-              <Text style={styles.nameText}>Student User</Text>
+              <Text style={styles.nameText}>{JSON.stringify(this.props.userData['name']).replace(/['"]+/g, '')}</Text>
             </View>
             <View style={styles.rightContainer}>
               <TouchableHighlight onPress={this.handleCalendarPress}>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { AppRegistry, Text, View, StyleSheet, Image, Dimensions, ScrollView, TextInput, TouchableHighlight } from 'react-native';
+import { AppRegistry, Text, View, StyleSheet, Image, Dimensions, ScrollView, TextInput, TouchableHighlight, } from 'react-native';
 import { Constants } from 'expo';
 import { Actions } from 'react-native-router-flux';
 import { Calendar, CalendarList, Agenda } from "react-native-calendars";
@@ -9,8 +9,6 @@ let deviceHeight = Dimensions.get("window").height;
 let deviceWidth = Dimensions.get("window").width;
 
 class TeacherCalendar extends React.Component {
-
-  //I always like keeping this here, it is for performing actions before the component (the screen) loads
   componentWillMount(){
 
   }
@@ -29,7 +27,7 @@ class TeacherCalendar extends React.Component {
           style={{
             borderWidth: 1,
             borderColor: "gray",
-            height: deviceHeight
+            height: deviceHeight,
           }}
           // Specify theme properties to override specific styles for calendar parts. Default = {}
           theme={{

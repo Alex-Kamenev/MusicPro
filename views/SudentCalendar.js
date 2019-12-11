@@ -68,9 +68,9 @@ class SudentCalendar extends React.Component {
   handleStudentHome = () => {
     Actions.StudentDash({userData: this.props.userData});
   };
-  handleCalendarStudentPress = () => {
-    Actions.SudentCalendar({userData: this.props.userData});
-  };
+  // handleCalendarStudentPress = () => {
+  //   Actions.SudentCalendar({userData: this.props.userData});
+  // };
   handleProfilePress = () => {
     Actions.TeacherList({userData: this.props.userData});
   };

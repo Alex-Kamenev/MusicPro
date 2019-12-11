@@ -87,7 +87,7 @@ class TeacherDash extends React.Component {
   };
 
   handleTeacherDash = () => {
-    Actions.TeacherDash({userData: this.props.userData});
+    //Actions.TeacherDash({userData: this.props.userData});
   };
 
   render() {

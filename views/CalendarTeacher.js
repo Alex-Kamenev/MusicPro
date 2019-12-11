@@ -10,9 +10,8 @@ import {
   Dimensions,
   ScrollView,
   TextInput,
-  TouchableHighlight
+  TouchableHighlight,
 } from "react-native";
-//Alejandro: only weirdos do this ^^^^
 import { Constants } from "expo";
 import { Actions } from "react-native-router-flux";
 import { Calendar, CalendarList, Agenda } from "react-native-calendars";
@@ -65,7 +64,7 @@ class CalendarTeacher extends React.Component {
   };
 
   handleCalendarPress = () => {
-    Actions.CalendarTeacher({userData: this.props.userData});
+    //Actions.CalendarTeacher({userData: this.props.userData});
   };
 
   handleProfilePress = () => {
@@ -83,7 +82,7 @@ class CalendarTeacher extends React.Component {
       contentContainerStyle={styles.container}
       scrollEnabled={true}
     >
-      // this is just random filler for the template, but this is where what the user sees is rendered
+      {/* this is just random filler for the template, but this is where what the user sees is rendered */}
       <View style={styles.container}>
         <View style={styles.topBar}>
           <View style={styles.leftContainer}>
@@ -98,7 +97,7 @@ class CalendarTeacher extends React.Component {
             </TouchableHighlight>
           </View>
           <View style={styles.middleContainer}>
-            <Text style={styles.profileText}>Teacher User</Text>
+            <Text style={styles.profileText}>{JSON.stringify(this.props.userData['name']).replace(/['"]+/g, '')}</Text>
           </View>
           <View style={styles.rightContainer}>
             <TouchableHighlight onPress={this.handleCalendarPress}>
