@@ -56,7 +56,7 @@ class StudentDash extends React.Component {
     Actions.TeacherCalendar();
   };
   handleCalendarStudentPress = () => {
-    Actions.SudentCalendar();
+    Actions.TeacherCalendar();
   };
   handleProfilePress = () => {
     Actions.TeacherList();

@@ -83,11 +83,11 @@ class TeacherDash extends React.Component {
   };
 
   handleProfilePress = () => {
-    Actions.StudentList();
+    //Actions.TeacherDash();
   };
 
   handleTeacherDash = () => {
-    Actions.TeacherDash();
+    //Actions.TeacherDash();
   };
 
   render() {

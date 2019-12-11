@@ -65,11 +65,11 @@ class CalendarTeacher extends React.Component {
   };
 
   handleCalendarPress = () => {
-    Actions.CalendarTeacher();
+    //Actions.CalendarTeacher();
   };
 
   handleProfilePress = () => {
-    Actions.StudentList();
+    Actions.TeacherDash();
   };
   handleTeacherDash = () => {
     Actions.TeacherDash();
@@ -81,9 +81,8 @@ class CalendarTeacher extends React.Component {
       style={{ backgroundColor: '#4c69a5' }}
       resetScrollToCoords={{ x: 0, y: 0 }}
       contentContainerStyle={styles.container}
-      scrollEnabled={true}
+      scrollEnabled={false}
     >
-      // this is just random filler for the template, but this is where what the user sees is rendered
       <View style={styles.container}>
         <View style={styles.topBar}>
           <View style={styles.leftContainer}>
@@ -200,7 +199,7 @@ class CalendarTeacher extends React.Component {
               <TouchableHighlight
                 onPress={() => {
                 //needs a proper box with a more sophisticated message and a accept reject buttons
-                  alert("Yes/No to request?");
+                  alert("Would you like to accept the request for a private lesson ?");
                 }}
               >
                 <View style={styles.nameContainer}>
