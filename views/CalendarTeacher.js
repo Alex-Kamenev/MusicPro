@@ -18,6 +18,8 @@ import { Calendar, CalendarList, Agenda } from "react-native-calendars";
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import * as firebase from 'firebase';
 
+//
+
 let deviceHeight = Dimensions.get("window").height;
 let deviceWidth = Dimensions.get("window").width;
 
