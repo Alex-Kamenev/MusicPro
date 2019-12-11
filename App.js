@@ -45,7 +45,7 @@ export default function App() {
             component = { RegisteredLogin }
             hideNavBar = { true }
         />
-        <Scene
+        <Scene 
           key = 'Signup'
           component = { Signup }
           hideNavBar = { true }  
@@ -54,11 +54,13 @@ export default function App() {
           key = "TeacherDash"
           component = { TeacherDash }
           hideNavBar = { true }
+          gesturesEnabled = { false }
         />
         <Scene
           key = "StudentDash"
           component = { StudentDash }
           hideNavBar = { true }
+          gesturesEnabled = { false }
         />
         <Scene
           key = 'StudentList'
