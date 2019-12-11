@@ -24,6 +24,6 @@ expo start
 #### Eric Anderson - UX/UI Designer
 #### Aleksander Kamenev - Front End Developer
 #### Yongjie Chen - Front End Developer
-#### Maksym Karunos - Back End Developer, Github Liason
+#### Maksym Karunos - Github Liason, Back End Engineer
 #### Alejandro Gonzalez - Lead Back End Engineer
 
