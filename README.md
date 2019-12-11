@@ -20,8 +20,10 @@ expo start
 
 ## Authors
 
-#### Chen
-#### Maksym Karunos
-#### Aleksander E Kamenev 
-#### Grace K Jacobs
-#### Alejandro Gonzalez
+#### Eric Anderson - UI Designer
+#### Grace Jacobs - UI Designer, Front End Developer
+#### Aleksander Kamenev - Front End Developer
+#### Yongjie Chen - Front End Developer
+#### Maksym Karunos - Back End Developer, Github Liason
+#### Alejandro Gonzalez - Lead Back End Engineer
+
