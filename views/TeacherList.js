@@ -76,14 +76,14 @@ handleTextChange = inputValue => {
 };
 
 handleCalendarPress = () => {
-    Actions.SudentCalendar();
+    Actions.SudentCalendar({userData: this.props.userData});
 }
 
 handleProfilePress = () => {
 }
 
 handleCheckPress = () => {
-    Actions.TeacherCalendar();
+    Actions.TeacherCalendar({userData: this.props.userData});
 }
 
 
@@ -100,7 +100,7 @@ handleCheckPress = () => {
                     </View>
                     <View style={styles.middleContainer}>
                         <Text style={styles.nameText}>
-                            Sarah Gibney
+                            {JSON.stringify(this.props.userData['name']).replace(/['"]+/g, '')}
                         </Text>
                     </View>
                     <View style={styles.rightContainer}>

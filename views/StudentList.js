@@ -25,7 +25,7 @@ class StudentList extends React.Component {
   componentWillMount() {}
 
   handleCalendarPress = () => {
-    Actions.CalendarTeacher();
+    Actions.CalendarTeacher({userData: this.props.userData});
   };
 
   //
@@ -96,14 +96,14 @@ class StudentList extends React.Component {
   };
 
   handleCalendarPress = () => {
-    Actions.CalendarTeacher();
+    Actions.CalendarTeacher({userData: this.props.userData});
   };
 
   handleProfilePress = () => {
-    Actions.StudentList();
+    Actions.StudentList({userData: this.props.userData});
   };
   handleTeacherDash = () => {
-    Actions.TeacherDash();
+    Actions.TeacherDash({userData: this.props.userData});
   };
 
   render() {

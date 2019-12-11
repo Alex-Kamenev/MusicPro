@@ -16,7 +16,7 @@ class ConfirmationPage extends React.Component {
   }
 
 handleOKPress = () => {
-    Actions.StudentDash();
+    Actions.StudentDash({userData: this.props.userData});
   }
 
   render() {

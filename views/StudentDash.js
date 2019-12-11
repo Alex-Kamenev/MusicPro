@@ -59,13 +59,13 @@ class StudentDash extends React.Component {
   };
 
   handleCalendarPress = () => {
-    Actions.TeacherCalendar();
+    Actions.TeacherCalendar({userData: this.props.userData});
   };
   handleCalendarStudentPress = () => {
-    Actions.SudentCalendar();
+    Actions.SudentCalendar({userData: this.props.userData});
   };
   handleProfilePress = () => {
-    Actions.TeacherList();
+    Actions.TeacherList({userData: this.props.userData});
   };
 
   render() {

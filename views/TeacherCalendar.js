@@ -17,7 +17,7 @@ class TeacherCalendar extends React.Component {
   
 
   handlePress = () => {
-    Actions.StudentRequest();
+    Actions.StudentRequest({userData: this.props.userData});
   }
 
 
@@ -64,7 +64,7 @@ class TeacherCalendar extends React.Component {
           maxDate={"2020-03-03"}
           // Handler which gets executed on day press. Default = undefined
           onDayPress={() => {
-            Actions.StudentRequest();
+            Actions.StudentRequest({userData: this.props.userData});
           }}
           // Handler which gets executed on day long press. Default = undefined
           onDayLongPress={(day) => {console.log('selected day', day)}}

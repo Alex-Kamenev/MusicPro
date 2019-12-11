@@ -41,11 +41,11 @@ handleTimeChange = time => {
 };
 
 handleSubmitPress = () => {
-    Actions.ConfirmationPage();
+    Actions.ConfirmationPage({userData: this.props.userData});
 }
 
 handleBackArrowPress = () => {
-    Actions.TeacherCalendar();
+    Actions.TeacherCalendar({userData: this.props.userData});
   }
 
   render() {

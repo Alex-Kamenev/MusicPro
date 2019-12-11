@@ -63,16 +63,16 @@ class SudentCalendar extends React.Component {
   };
 
   handleCalendarPress = () => {
-    Actions.TeacherCalendar();
+    Actions.TeacherCalendar({userData: this.props.userData});
   };
   handleStudentHome = () => {
-    Actions.StudentDash();
+    Actions.StudentDash({userData: this.props.userData});
   };
   handleCalendarStudentPress = () => {
-    Actions.SudentCalendar();
+    Actions.SudentCalendar({userData: this.props.userData});
   };
   handleProfilePress = () => {
-    Actions.TeacherList();
+    Actions.TeacherList({userData: this.props.userData});
   };
 
   render() {
@@ -93,7 +93,7 @@ class SudentCalendar extends React.Component {
             </TouchableHighlight>
           </View>
           <View style={styles.middleContainer}>
-            <Text style={styles.profileText}>Student User</Text>
+            <Text style={styles.profileText}>{JSON.stringify(this.props.userData['name']).replace(/['"]+/g, '')}</Text>
           </View>
           <View style={styles.rightContainer}>
             <TouchableHighlight onPress={this.handleCalendarStudentPress}>
