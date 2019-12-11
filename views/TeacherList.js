@@ -100,7 +100,7 @@ handleCheckPress = () => {
                     </View>
                     <View style={styles.middleContainer}>
                         <Text style={styles.nameText}>
-                            Sarah Gibney
+                            Student User
                         </Text>
                     </View>
                     <View style={styles.rightContainer}>
