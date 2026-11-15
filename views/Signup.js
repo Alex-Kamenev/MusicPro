@@ -3,6 +3,7 @@ import { AppRegistry, View, StyleSheet, Text, TouchableOpacity, TextInput, Dimen
 import { Actions } from 'react-native-router-flux';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import * as firebase from 'firebase';
+import { registerAccount } from '../lib/auth';
 
 let deviceHeight = Dimensions.get('window').height;
 let deviceWidth = Dimensions.get('window').width;
@@ -35,54 +36,12 @@ class Signup extends React.Component {
   }
 
 
-  //firebase account creation and automatic login
+  // Authentication and the profile write must both succeed before navigation.
   onDonePressed = () => {
-    //if the passwords match
-    if(this.state.password == this.state.confirmPassword){
-      //this creates a database reference to copy the info to the database 
-      var db = firebase.database();
-      //this creates an accessible reference to this.state, we could also use .bind(this)
-      var name = this.state.name;
-      var email = this.state.email;
-      //if the person is a student or a teacher
-      if (this.state.student == true){
-        //creates the user and adds them to the auth section of firebase
-        firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password).catch(function(error) {
-          var errorMessage = error.message;
-          alert(errorMessage);
-        }).then(function() {
-          //brings up the users data from auth 
-          var user = firebase.auth().currentUser;
-          //copies the users data from auth to the database, adding the name and whether they're a student or a teacher
-          db.ref(`users/${user.uid}/info`).set({
-            email: user.email,
-            uid: user.uid,
-            name: name,
-            userType: "student"
-          });
-          Actions.StudentDash();
-        });
-      } else {
-        //creates the user and adds them to the auth section of firebase
-        firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password).catch(function(error) {
-          var errorMessage = error.message;
-          alert(errorMessage);
-        }).then(function() {
-          //brings up the users data from auth 
-          var user = firebase.auth().currentUser;
-          //copies the users data from auth to the database, adding the name and whether they're a student or a teacher
-          db.ref(`users/${user.uid}/info`).set({
-            email: user.email,
-            uid: user.uid,
-            name: name,
-            userType: "teacher"
-          });
-          Actions.TeacherDash();
-        });
-      }
-    } else {
-      alert("Make sure the passwords match!")
-    }
+    return registerAccount(firebase, this.state, role => {
+      if (role === 'student') Actions.StudentDash();
+      else Actions.TeacherDash();
+    }).catch(error => alert(error.message || 'Unable to create your account.'));
   }
 
   render() {
