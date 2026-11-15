@@ -1,50 +1,50 @@
-//A Node framework, which will create our server routes. Great for creating APIs and stuff
-var express = require('express');
-//Start our app
-var app = express();
+'use strict';
 
-//creating a connection with our database, fill it with your database's data
-var mysql = require('mysql');
-//It will help us getting data from our request's body
-var bodyParser = require('body-parser');
+// Retired learning-server stub. It intentionally has no database connection.
+// Real account data belongs behind authenticated, authorized service endpoints.
+const http = require('node:http');
 
-app.use(bodyParser.json({type:'application/json'}));
-app.use(bodyParser.urlencoded({extended: true}));
+function readPort(value) {
+  if (value === undefined) return 3000;
+  if (!/^\d+$/.test(value) || Number(value) < 0 || Number(value) > 65535) {
+    throw new Error('PORT must be an integer from 0 to 65535.');
+  }
+  return Number(value);
+}
 
-var connection = mysql.createConnection({
-    //host: 'shareddb-f.hosting.stackcp.net',
-    host: 'localhost',
-    //user: 'usernamegoeshere',
-    user: 'root',
-    //password: 'passwordhere_', 
-    password: '',
-    //database: 'firstdatabase-3639ae5b',
-    database: 'firstdatabase',
-    //port: '53201',
-    port: '3306',
-});
+function handleRequest(request, response) {
+  response.setHeader('Content-Type', 'application/json; charset=utf-8');
+  response.setHeader('Cache-Control', 'no-store');
+  response.setHeader('X-Content-Type-Options', 'nosniff');
+  const pathname = request.url.split('?')[0];
+  response.statusCode = pathname === '/user' ? 410 : 404;
+  response.end(JSON.stringify({
+    error: pathname === '/user'
+      ? 'The unauthenticated sample user endpoint has been retired.'
+      : 'Not found.',
+  }));
+}
 
-var server = app.listen (3000, function(){
-    var host = server.address().address
-    var port = server.address().port
-    console.log('start');
-});
+function startServer(environment = process.env) {
+  const port = readPort(environment.PORT);
+  const server = http.createServer(handleRequest);
+  // Keep this retired sample local; there is deliberately no HOST override.
+  server.listen(port, '127.0.0.1');
+  return server;
+}
 
-connection.connect(function(error){
-    if(error) console.log(error);
-    else console.log('connected');
-});
-
-//Creating a GET route that returns data from the 'users' table
-app.get('/user', function(req, res){
-    connection.query('SELECT * FROM user', function(error, rows, fields){
-        if(error) console.log(error);
-        else{
-            console.log(rows);
-            res.send(rows);
-        }
+if (require.main === module) {
+  try {
+    const server = startServer();
+    server.once('listening', () => console.log('Retired sample stub listening on loopback.'));
+    server.once('error', () => {
+      console.error('Could not start the local sample stub. Check PORT and whether it is in use.');
+      process.exitCode = 1;
     });
-});
+  } catch (error) {
+    console.error('Could not start the local sample stub. PORT must be an integer from 0 to 65535.');
+    process.exitCode = 1;
+  }
+}
 
-//https://www.youtube.com/watch?v=ztTM50ZuKNo
-//https://www.youtube.com/watch?v=MY_DEKLQiOU&t=143
+module.exports = { handleRequest, readPort, startServer };
